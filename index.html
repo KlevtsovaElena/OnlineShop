@@ -15,7 +15,7 @@
         <div class="menu flex-box-start">
             <div class="logoMenu marg-right">PIC</div>
             <div class="nav flex-box">
-                <div class="cat marg-right">Catalog</div>
+                <div class="cat marg-right" onclick="renderCatalog()">Catalog</div>
                 <div class="cat marg-right">New releases</div>
                 <div class="cat marg-right">Collections</div>
            <!--     <div class="cat marg-right">Watches by type</div>-->
@@ -148,7 +148,7 @@
 
 
     <template id="tmpl-catalog">
-        <div id="watch-box">
+        <div id="watch-box" onclick="renderCard(${id})">
             <div class="name">${title}</div>
             <img class="pic" src="${photo}">
             <div class="price">From ${price}</div>
@@ -157,7 +157,7 @@
     <template id="tmpl-card">
         <div id="watch-card">
             <div class="onecard">
-                <img class="watch-img" src="${photo}">
+                <img class="watch-img" src="${photo}" >
                 <div class="watch-rating">${rating}</div>
                 <div class="watch-price">${price}</div>
                 <div class="watch-count">${сколько_часов_в_наличии}</div>

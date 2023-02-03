@@ -56,10 +56,10 @@ function sendRequestGET(url){
 console.log(data);
 console.log(data[0]['id']);
     /*вот это /{id}/g нужно для того, чтобы заменить ВСЕ найденные значения {id}, а не первое */
-    containerPage.innerHTML += templateCatalog.replace('${id}', data[i]['id'])
-                                            .replace('${title}', data[i]['product_name'])
-                                            .replace('${photo}', data[i]['image'])
-                                            .replace('${price}', data[i]['price'])
+    containerPage.innerHTML += templateCatalog.replace('${id}', data[0]['id'])
+                                            .replace('${title}', data[0]['product_name'])
+                                            .replace('${photo}', data[0]['image'])
+                                            .replace('${price}', data[0]['price'])
                                             .replace('{rate}', 'рейтинг')
                                             .replace('{count}', 'число')
                                             .replace('{description}', data[0]['product_description']);
