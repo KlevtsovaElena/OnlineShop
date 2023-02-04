@@ -7,16 +7,25 @@ let containerPage = document.getElementById('containerPage');
 
 let templateCatalog = document.getElementById('tmpl-catalog').innerHTML;
 let templateCard = document.getElementById('tmpl-card').innerHTML;
-let templateDeliveryPay = document.getElementById('tmpl-deliveryPay').innerHTML;
-let templateContacts = document.getElementById('tmpl-contacts').innerHTML;
+let templateMainContent = document.getElementById('mainContent').innerHTML;
+
+//let templateDeliveryPay = document.getElementById('tmpl-deliveryPay').innerHTML;
+//let templateContacts = document.getElementById('tmpl-contacts').innerHTML;
 let templateCart = document.getElementById('tmpl-cart').innerHTML;
-//отрисуем при загрузке каталог путём вызова функции
-renderCatalog();
+
+//отрисуем при загрузке страницу путём вызова функции
+renderMainPage();
 
 //функция очистки страницы
 function clearPage(){
 
     containerPage.innerHTML="";
+}
+
+//функция вывода главной страницы
+function renderMainPage(){
+    clearPage();
+    containerPage.innerHTML = templateMainContent;
 }
 
 //функция для отправки запросов
