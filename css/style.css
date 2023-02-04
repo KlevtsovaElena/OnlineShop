@@ -83,6 +83,7 @@ body {
     font-weight: bold;
     letter-spacing: 1px;
     padding: 5px;
+    color: white;
 }
 
 .name, .price {
@@ -161,4 +162,25 @@ body {
 .funName, .funPrice {
     text-align: center;
     padding: 5px;
+}
+
+#containerPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#watch-box {
+    flex-direction: column;
+    width: 500px;
+    display: flex;
+    align-items: center;
+}
+
+.pic {
+    width: 300px;
+}
+
+.price {
+    color: white;
 }
