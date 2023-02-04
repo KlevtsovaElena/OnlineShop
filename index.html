@@ -30,130 +30,128 @@
             </div>
         </div>
     </header>
-    <main>
-        <div id="containerPage"></div>   
-        <div id="carouselExample" class="carousel slide">
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="img/watch_1.jpeg" class="d-block w-100" alt="...">
-              </div>
-              <div class="carousel-item">
-                <img src="img/watch_2.jpeg" class="d-block w-100" alt="...">
-              </div>
-              <div class="carousel-item">
-                <img src="img/watch_3.jpeg" class="d-block w-100" alt="...">
-              </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
-          <div class="newReleases bg-white">
-            <div class="caption">New Releases</div>
-            <div class="watches flex-box">
-                <div class="watch marg-right">
-                    <img class="wtch-pic" src="img/watch_buy1.webp" alt="">
-                    <div class="cardContent">
-                        <div class="name">Something</div>
-                        <div class="price">99999sek</div>
-                    </div>
-                </div>
-                <div class="watch marg-right">
-                    <img class="wtch-pic" src="img/watch_buy2.webp" alt="">
-                    <div class="cardContent">
-                        <div class="name">Something</div>
-                        <div class="price">99999sek</div>
-                    </div>
-                </div>
-                <div class="watch marg-right">
-                    <img class="wtch-pic" src="img/watch_buy3.webp" alt="">
-                    <div class="cardContent">
-                        <div class="name">Something</div>
-                        <div class="price">99999sek</div>
-                    </div>
-                </div>
-                <div class="watch marg-right">
-                    <img class="wtch-pic" src="img/watch_buy4.webp" alt="">
-                    <div class="cardContent">
-                        <div class="name">Something</div>
-                        <div class="price">99999sek</div>
-                    </div>
-                </div>
-            </div>
-          </div>
-          <div class="thirdSlide">
-            <div class="slideContent">
-                <div class="title">INSPIRED BY CAR RACING</div>
-                <div class="dscrb">THE REBEL-AR COLLECTION</div>
-                <div class="btn-more">Discover more</div>
-            </div>
-          </div>
-          <div class="funFavorites bg-white">
-            <div class="funTitle">FAN FAVORITES</div>
-            <div class="funDscrb">Top Rated LIV Watches</div>
-            <div class="funWatches flex-box">
-                <div class="watchIn marg-right">
-                    <img src="img/funWatch_buy1.webp" alt="" class="funWtch-pic">
-                    <div class="funCardContent">
-                        <div class="funName">Something</div>
-                        <div class="funPrice">111111sek</div>
-                    </div>
-                </div>
-                <div class="watchIn marg-right">
-                    <img src="img/funWatch_buy2.jpg" alt="" class="funWtch-pic">
-                    <div class="funCardContent">
-                        <div class="funName">Something</div>
-                        <div class="funPrice">111111sek</div>
-                    </div>
-                </div>
-                <div class="watchIn marg-right">
-                    <img src="img/funWatch_buy3.webp" alt="" class="funWtch-pic">
-                    <div class="funCardContent">
-                        <div class="funName">Something</div>
-                        <div class="funPrice">111111sek</div>
-                    </div>
-                </div>
-                <div class="watchIn marg-right">
-                    <img src="img/funWatch_buy4.webp" alt="" class="funWtch-pic">
-                    <div class="funCardContent">
-                        <div class="funName">Something</div>
-                        <div class="funPrice">111111sek</div>
-                    </div>
-                </div>
-            </div>
-          </div>
+
+    <main id="startContent">
+        <div id="containerPage">
+        </div>   
     </main>
+
     <footer>
 
     </footer>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <template id="tmpl-catalog">
-        <div id="watch-box" onclick="renderCard(${id})">
-            <div class="name">${title}</div>
-            <img class="pic" src="${photo}">
-            <div class="price">From ${price}</div>
+    <template id="mainContent">
+        <div id="startPage">
+            <div id="carouselExample" class="carousel slide">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="img/watch_1.jpeg" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="img/watch_2.jpeg" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="img/watch_3.jpeg" class="d-block w-100" alt="...">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+              <div class="newReleases bg-white">
+                <div class="caption">New Releases</div>
+                <div class="watches flex-box">
+                    <div class="watch marg-right">
+                        <img class="wtch-pic" src="img/watch_buy1.webp" alt="">
+                        <div class="cardContent">
+                            <div class="name">Something</div>
+                            <div class="price">99999sek</div>
+                        </div>
+                    </div>
+                    <div class="watch marg-right">
+                        <img class="wtch-pic" src="img/watch_buy2.webp" alt="">
+                        <div class="cardContent">
+                            <div class="name">Something</div>
+                            <div class="price">99999sek</div>
+                        </div>
+                    </div>
+                    <div class="watch marg-right">
+                        <img class="wtch-pic" src="img/watch_buy3.webp" alt="">
+                        <div class="cardContent">
+                            <div class="name">Something</div>
+                            <div class="price">99999sek</div>
+                        </div>
+                    </div>
+                    <div class="watch marg-right">
+                        <img class="wtch-pic" src="img/watch_buy4.webp" alt="">
+                        <div class="cardContent">
+                            <div class="name">Something</div>
+                            <div class="price">99999sek</div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <div class="thirdSlide">
+                <div class="slideContent">
+                    <div class="title">INSPIRED BY CAR RACING</div>
+                    <div class="dscrb">THE REBEL-AR COLLECTION</div>
+                    <div class="btn-more">Discover more</div>
+                </div>
+              </div>
+              <div class="funFavorites bg-white">
+                <div class="funTitle">FAN FAVORITES</div>
+                <div class="funDscrb">Top Rated LIV Watches</div>
+                <div class="funWatches flex-box">
+                    <div class="watchIn marg-right">
+                        <img src="img/funWatch_buy1.webp" alt="" class="funWtch-pic">
+                        <div class="funCardContent">
+                            <div class="funName">Something</div>
+                            <div class="funPrice">111111sek</div>
+                        </div>
+                    </div>
+                    <div class="watchIn marg-right">
+                        <img src="img/funWatch_buy2.jpg" alt="" class="funWtch-pic">
+                        <div class="funCardContent">
+                            <div class="funName">Something</div>
+                            <div class="funPrice">111111sek</div>
+                        </div>
+                    </div>
+                    <div class="watchIn marg-right">
+                        <img src="img/funWatch_buy3.webp" alt="" class="funWtch-pic">
+                        <div class="funCardContent">
+                            <div class="funName">Something</div>
+                            <div class="funPrice">111111sek</div>
+                        </div>
+                    </div>
+                    <div class="watchIn marg-right">
+                        <img src="img/funWatch_buy4.webp" alt="" class="funWtch-pic">
+                        <div class="funCardContent">
+                            <div class="funName">Something</div>
+                            <div class="funPrice">111111sek</div>
+                        </div>
+                    </div>
+                </div>
+              </div>
         </div>
     </template>
+
+    <template id="tmpl-catalog">
+        <div id="watch-box" >
+            <div class="name">${title}</div>
+            <img class="pic" src="${photo}" onclick="renderCard(${id})">
+            <div class="btm-block">
+                <div class="price">From ${price}</div>
+                <div class="btn-buy">Add+</div>
+                <img src="img/like.png" alt="" class="like">
+            </div>
+        </div>
+    </template>
+
     <template id="tmpl-card">
         <div id="watch-card">
             <div class="onecard">

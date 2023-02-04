@@ -15,8 +15,9 @@ renderCatalog();
 
 //функция очистки страницы
 function clearPage(){
+
     containerPage.innerHTML="";
-    }
+}
 
 //функция для отправки запросов
 function sendRequestGET(url){
@@ -32,11 +33,13 @@ function sendRequestGET(url){
     //получаем данные каталога
     let json = sendRequestGET('http://localhost:8090/api/get/?table=Goods');
     //раскодируем данные
-    let data=JSON.parse(json);
+    let data = JSON.parse(json);
 
     console.log(data);
+
     //используем шаблон html - tmpl-catalog для вывода на страницу всех товаров из API
     containerPage.style.backgroundColor="";
+
      for (let i = 0; i < data.length; i++){   
         containerPage.innerHTML += templateCatalog.replace('${id}', data[i]['id'])
                                                   .replace('${title}', data[i]['product_name'])
@@ -48,13 +51,17 @@ function sendRequestGET(url){
 
  //функция отрисовки карточки
  function renderCard(id){
+
     clearPage();
+
     //получаем данные одного товара по id
     let json = sendRequestGET('http://localhost:8090/api/get/?table=Goods&id=' + id);
     //раскодируем данные
-    let data=JSON.parse(json);
-console.log(data);
-console.log(data[0]['id']);
+    let data = JSON.parse(json);
+
+        console.log(data);
+        console.log(data[0]['id']);
+
     /*вот это /{id}/g нужно для того, чтобы заменить ВСЕ найденные значения {id}, а не первое */
     containerPage.innerHTML += templateCatalog.replace('${id}', data[0]['id'])
                                             .replace('${title}', data[0]['product_name'])
