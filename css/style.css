@@ -213,3 +213,28 @@ body {
     background-color: red;
     transition: all 0.6s;
 }
+
+
+/*лена 040223*/
+.cartImg{
+    width: 40px;
+    height: 40px;
+    position: relative;
+}
+.cartImg img{
+    width: 40px;
+    cursor: pointer;
+}
+#countProduct{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #FF0033;
+    color: white;
+    border: none;
+    position: absolute;
+    padding: 0;
+    font-size: 12px;
+    top: -7px;
+    left: -9px;
+}
