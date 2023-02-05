@@ -27,7 +27,10 @@
                 <div class="search marg-right" onclick="renderMainPage()">Home</div>                
                 <div class="search marg-right">Search</div>
                 <div class="login marg-right">Login</div>
-                <div class="basket marg-right">Basket</div>
+                <div class="cartImg" onclick="showCart()">
+                    <img src="img/cartImg.png" >
+                    <button id="countProduct" ></button>
+                </div>
             </div>
         </div>
     </header>
@@ -207,7 +210,7 @@
             <img class="pic" src="${photo}" onclick="renderCard(${id})">
             <div class="btm-block">
                 <div class="price">From ${price}</div>
-                <div class="btn-buy">Add+</div>
+                <div class="btn-buy" onclick="addProductInCart()" product-id="${id}">Add+</div>
                 <img src="img/like.png" alt="" class="like">
             </div>
         </div>
