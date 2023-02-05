@@ -94,6 +94,7 @@ function renderCatalog(){
 
         for (let i = 0; i < data.length; i++){   
         containerPage.innerHTML += templateCatalog.replace('${id}', data[i]['id'])
+                                                    .replace('${id}', data[i]['id'])
                                                     .replace('${title}', data[i]['product_name'])
                                                     .replace('${photo}', data[i]['image'])
                                                     .replace('${price}', data[i]['price']);
@@ -130,11 +131,56 @@ function renderCard(id){
 //добавление товара в корзину (записываем в ls только id)
 function addProductInCart(){
 
+    //определяем на кнопку какого товара нажали (его id)
+    let productId = event.target.getAttribute('product-id');
+    //записываем этот айдишник в массив товаров Корзины
+    arrayCart.push(productId);
+    //пересохраняем массив товаров Корзины в localStorage
+    save('cart', arrayCart);
+
     //плюсуем в счётчик товаров в корзине
     countProduct++;
     //перерисовываем значение счётчика
     containerCountProduct.innerHTML = countProduct;
     //сохраняем новое значение в lS
     save('countProduct', countProduct);
-
 }
+
+
+//отрисовка Корзины
+function showCart(){
+    clearPage();
+
+    let json = sendRequestGET('http://localhost:8090/api/get/?table=Goods');
+    let data=JSON.parse(json);
+    let cart = "";
+    let price = 0;
+    /*пробегаем по массиву товаров в корзине. Записываем в переменную cart все его элементы с новой строки.
+     А в переменную price считаем общую стоимость товаров*/
+    for(let i=0; i < arrayCart.length; i++){
+       // cart += (i+1) + ". " + data[arrayCart[i]-1]['product_name'] + "----------" + data[arrayCart[i]-1]['price'] + " руб.<br>";
+        price += data[arrayCart[i]-1]['price'];
+    containerPage.innerHTML += templateCart .replace('${count}', arrayCart.length)
+                                            .replace('${countSum}', price)
+                                            .replace('${photo}', data[i]['image'])
+                                            .replace('${title}', data[i]['product_name'])
+                                            .replace('${price}', data[i]['price']);
+    }
+ }
+
+/*
+<template id="tmpl-cart">
+<div class="cart">
+    <h1>Корзина</h1>
+    <p>${count} позиций на сумму ${countSum}</p>
+    <div class="watchCard">
+        <img src="${photo}" alt="" class="watch-img">
+        <div class="watch-name">${title}</div>
+        <div class="watch-count">${count}</div>
+        <div class="watch-price">${price}</div>
+        <div class="watch-delete">${delete}</div>
+    </div>
+</div>
+</template>
+
+*/
