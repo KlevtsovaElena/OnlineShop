@@ -36,6 +36,8 @@ let templateCatalog = document.getElementById('tmpl-catalog').innerHTML;
 let templateCard = document.getElementById('tmpl-card').innerHTML;
 let templateMainContent = document.getElementById('mainContent').innerHTML;
 let templateCart = document.getElementById('tmpl-cart').innerHTML;
+let templateContainerWatchCard = document.getElementById('tmpl-containerWatchCard').innerHTML;
+
 
 //let templateDeliveryPay = document.getElementById('tmpl-deliveryPay').innerHTML;
 //let templateContacts = document.getElementById('tmpl-contacts').innerHTML;
@@ -155,19 +157,22 @@ function showCart(){
 
     let json = sendRequestGET('http://localhost:8090/api/get/?table=Goods');
     let data=JSON.parse(json);
-    let cart = "";
+
     let price = 0;
+    let watchCards = '';
     /*пробегаем по массиву товаров в корзине. Записываем в переменную cart все его элементы с новой строки.
      А в переменную price считаем общую стоимость товаров*/
-    for(let i=0; i < arrayCart.length; i++){
+     for(let i=0; i < arrayCart.length; i++){
        // cart += (i+1) + ". " + data[arrayCart[i]-1]['product_name'] + "----------" + data[arrayCart[i]-1]['price'] + " руб.<br>";
-        price += data[arrayCart[i]-1]['price'];
-    containerPage.innerHTML += templateCart .replace('${count}', arrayCart.length)
-                                            .replace('${countSum}', price)
-                                            .replace('${photo}', data[i]['image'])
+        price += data[i]['price'];
+        alert(i);
+        watchCards += templateContainerWatchCard.replace('${photo}', data[i]['image'])
                                             .replace('${title}', data[i]['product_name'])
                                             .replace('${price}', data[i]['price']);
     }
+    containerPage.innerHTML += templateCart.replace('${count}', arrayCart.length)
+                                            .replace('${countSum}', price)
+                                            .replace('${watchCards}', watchCards);
  }
 
 /*
