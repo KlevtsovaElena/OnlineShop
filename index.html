@@ -215,23 +215,24 @@
 
     <template id="tmpl-card">
         <div id="watch-card">
+            <img class="watch-img" src="${photo}">
             <div class="onecard">
-                <img class="watch-img" src="${photo}" >
-                <div class="watch-rating">${rating}</div>
-                <div class="watch-price">${price}</div>
-                <div class="watch-count">${сколько_часов_в_наличии}</div>
-            </div>
-            <div class="describe">
-                <div class="watch-name">${title}</div>
-                <ul class="list-style">
-                    <li>Sex: ${male/female}</li>
-                    <li>Color: ${color}</li>
-                    <li>Brand: ${brand}</li>
-                    <div>
-                        <h1>Description</h1>
-                        <p>${description}</p>
+                <div class="topSide">
+                    <div class="watch-count">${В_наличии_шт?}</div>
+                    <div class="share">Share with</div>
+                    <img src="img/like.png" alt="" class="like">
+                </div>
+                <div class="rightSide">
+                    <div class="watch-brand">${brand}</div>
+                    <div class="watch-name">${title}</div>
+                    <div class="dscr">${description}</div>
+                    <div class="watch-price">Цена: ${price} руб.</div>
+                    <div class="btn-buy">Add+</div>
+                    <div class="info">
+                        <div class="watch-rating">${rating}</div>
+                        <div class="reviews">Отзывы</div>
                     </div>
-                </ul>
+                </div>
             </div>
         </div>
     </template>

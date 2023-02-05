@@ -72,7 +72,8 @@ function sendRequestGET(url){
         console.log(data[0]['id']);
 
     /*вот это /{id}/g нужно для того, чтобы заменить ВСЕ найденные значения {id}, а не первое */
-    containerPage.innerHTML += templateCatalog.replace('${id}', data[0]['id'])
+    containerPage.innerHTML += templateCard.replace('${id}', data[0]['id'])
+                                            // .replace('${brand}', data[0]['brand'])
                                             .replace('${title}', data[0]['product_name'])
                                             .replace('${photo}', data[0]['image'])
                                             .replace('${price}', data[0]['price'])
