@@ -115,8 +115,10 @@ function renderCard(id){
     console.log(data);
     console.log(data[0]['id']);
 
+
     //меняем данные в шаблоне данными из апишки
     containerPage.innerHTML += templateCard.replace('${id}', data[0]['id'])
+
                                             .replace('${title}', data[0]['product_name'])
                                             .replace('${photo}', data[0]['image'])
                                             .replace('${price}', data[0]['price'])
