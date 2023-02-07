@@ -4,6 +4,7 @@ body {
     margin: 0 auto;
     background-color: rgb(41,44,51);
     scroll-behavior: smooth;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 .freeShipping {
@@ -172,7 +173,8 @@ body {
     width: 400px;
     display: flex;
     align-items: center;
-    height: 400px;
+    height: 500px;
+    justify-content: center;
 }
 
 .pic {
@@ -188,6 +190,7 @@ body {
     display: flex;
     justify-content: space-evenly;
     padding: 15px;
+    margin-top: 15px;
 }
 
 .btn-buy {
@@ -324,7 +327,7 @@ footer {
 
 .topSide {
     display: flex;
-    justify-content: space-around;
+    justify-content: end;
 }
 
 .dscr {
@@ -359,4 +362,38 @@ footer {
     font-size: 12px;
     top: -7px;
     left: -9px;
+}
+
+.windowCart {
+    width: 100%;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+}
+
+.watch-cart-img {
+    width: 200px;
+}
+
+.share {
+    width: 30px;
+}
+
+.watch-count {
+    padding: 10px;
+}
+
+.watch-name {
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.dscr {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.watch-price {
+    font-size: 20px;
 }
