@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
   </head>
     <title>Internet Shop</title>
 </head>
@@ -24,9 +27,9 @@
                 <div class="cat marg-right">Watch finder</div>
             </div>
             <div class="links flex-box-end">
-                <div class="search marg-right" onclick="renderMainPage()">Home</div>                
-                <div class="search marg-right">Search</div>
-                <div class="login marg-right">Login</div>
+                <div class="bd-btm marg-right" onclick="renderMainPage()">Home</div>                
+                <div class="bd-btm marg-right">Search</div>
+                <div class="bd-btm login marg-right">Login</div>
                 <div class="cartImg" onclick="showCart()">
                     <img src="img/cartImg.png" >
                     <button id="countProduct" ></button>
@@ -209,7 +212,7 @@
             <div class="name">${title}</div>
             <img class="pic" src="${photo}" onclick="renderCard(${id})">
             <div class="btm-block">
-                <div class="price">From ${price}</div>
+                <div class="price">От ${price} руб.</div>
                 <div class="btn-buy" onclick="addProductInCart()" product-id="${id}">Add+</div>
                 <img src="img/like.png" alt="" class="like">
             </div>
@@ -221,9 +224,9 @@
             <img class="watch-img" src="${photo}">
             <div class="onecard">
                 <div class="topSide">
-                    <div class="watch-count">${В_наличии_шт?}</div>
-                    <div class="share">Share with</div>
-                    <img src="img/like.png" alt="" class="like">
+                    <div class="watch-count marg-right">${В_наличии_шт?}</div>
+                    <img src="img/share.svg" alt="" class="marg-right share">
+                    <img src="img/like.png" alt="" class="marg-right like">
                 </div>
                 <div class="rightSide">
                     <div class="watch-brand">${brand}</div>
@@ -239,22 +242,25 @@
             </div>
         </div>
     </template>
-    <template id="tmpl-cart">
+  
+<template id="tmpl-cart">
+    <div class="windowCart">
+        <p>${count} позиций на сумму ${countSum}</p>
         <div class="cart">
             <h1>Корзина</h1>
-            <p>${count} позиций на сумму ${countSum}</p>
             <div>${watchCards}</div>
         </div>
-    </template>
-    <template id="tmpl-containerWatchCard">
-        <div class="watchCard">
-            <img src="${photo}" alt="" class="watch-img">
-            <div class="watch-name">${title}</div>
-            <div class="watch-count">${count}</div>
-            <div class="watch-price">${price}</div>
-            <div class="watch-delete">${delete}</div>
-        </div>
-    </template>
+    </div>
+</template>
+<template id="tmpl-containerWatchCard">
+    <div class="watchCard">
+        <img src="${photo}" alt="" class="watch-cart-img">
+        <div class="watch-name">${title}</div>
+        <div class="watch-count">${count}</div>
+        <div class="watch-price">${price}</div>
+        <div class="watch-delete">${delete}</div>
+    </div>
+</template>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
 <script src="js/main.js"></script>
