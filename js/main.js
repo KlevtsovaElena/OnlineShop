@@ -244,33 +244,4 @@ for (let i = 0;  i < arrayCart.length; i++){
                                             .replace('${watchCards}', watchCards);
  }
 
-/*
-<template id="tmpl-cart">
-<div class="cart">
-    <h1>Корзина</h1>
-    <p>${count} позиций на сумму ${countSum}</p>
-    <div class="watchCard">
-        <img src="${photo}" alt="" class="watch-img">
-        <div class="watch-name">${title}</div>
-        <div class="watch-count">${count}</div>
-        <div class="watch-price">${price}</div>
-        <div class="watch-delete">${delete}</div>
-    </div>
-</div>
-</template>
 
-*/
-
-
-let arr = [1,3,3,1,1,1];
-function uniq(arr){
-    let tmp = [];
-    for (let i = 0; i < arr.length; i++){
-        if(tmp.indexOf(arr[i]) == -1){
-            tmp.push(arr[i]);
-        }
-    }
-    return tmp;
-}
-
-console.log(uniq(arr));
