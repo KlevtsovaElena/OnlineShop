@@ -2,7 +2,7 @@
 //создаём переменные  для записи товаров в корзину И избранное, переменную для подсчёта товаров в корзине. Точнее id товаров
 //и записываем в них значения localStorage
 let arrayCart = window.localStorage.getItem('cart');
-let arrayHeart = window.localStorage.getItem('heart');
+let arrayFavorite = window.localStorage.getItem('favorite');
 let countProduct = window.localStorage.getItem('countProduct');
 
 
@@ -10,10 +10,6 @@ let countProduct = window.localStorage.getItem('countProduct');
 if (arrayCart == null || arrayCart == 'null' || arrayCart == ''){
     arrayCart = new Array();
 }else {arrayCart = JSON.parse(arrayCart);}
-
-if (arrayHeart == null || arrayHeart == 'null' || arrayHeart == ''){
-    arrayHeart = new Array();
-}else {arrayHeart = JSON.parse(arrayHeart);}
 
 if (countProduct == null){
     countProduct = 0;
@@ -27,23 +23,23 @@ console.log(countProduct);
 
 //переменные для записи элементов HTML
 //основной контейнер, куда будут отрисовываться все страницы.
-let containerPage = document.getElementById('containerPage');
+const containerPage = document.getElementById('containerPage');
 //контейнер для счётчика товаров в корзине (красный круг)
-let containerCountProduct = document.getElementById('countProduct');
+const containerCountProduct = document.getElementById('countProduct');
 
 //шаблоны для отрисовки
-let templateCatalog = document.getElementById('tmpl-catalog').innerHTML;
-let templateCard = document.getElementById('tmpl-card').innerHTML;
-let templateMainContent = document.getElementById('mainContent').innerHTML;
-let templateCart = document.getElementById('tmpl-cart').innerHTML;
-let templateContainerWatchCard = document.getElementById('tmpl-containerWatchCard').innerHTML;
+const templateCatalog = document.getElementById('tmpl-catalog').innerHTML;
+const templateCard = document.getElementById('tmpl-card').innerHTML;
+const templateMainContent = document.getElementById('mainContent').innerHTML;
+const templateCart = document.getElementById('tmpl-cart').innerHTML;
+const templateContainerWatchCard = document.getElementById('tmpl-containerWatchCard').innerHTML;
 
 
 //let templateDeliveryPay = document.getElementById('tmpl-deliveryPay').innerHTML;
 //let templateContacts = document.getElementById('tmpl-contacts').innerHTML;
 
 //впишем в красный круг корзины количество товаров из переменной countProduct
-document.getElementById('countProduct').innerHTML = countProduct;
+containerCountProduct.innerHTML = countProduct;
 
 //отрисуем при загрузке Главную страницу путём вызова функции
 renderMainPage();
@@ -131,13 +127,48 @@ function renderCard(id){
 }
 
   
+//функция получения значений только нужного поля ассоц массива
+function getValueField(arr, key){
+    let valueFieldArray = [];
+    for(let i = 0; i < arr.length; i++){
+        valueFieldArray.push(arr[i][key]);
+    }
+    console.log(valueFieldArray);
+    return valueFieldArray;
 
+}
 //добавление товара в корзину (записываем в ls только id)
 function addProductInCart(){
 
     //определяем на кнопку какого товара нажали (его id)
     let productId = event.target.getAttribute('product-id');
 
+    //получим только id корзины
+    let idArrayCart = getValueField(arrayCart, 'id');
+
+    //
+    let indexElement = idArrayCart.indexOf(productId);
+
+    if (indexElement == -1){
+        arrayCart.push({'id': productId, 'count': 1}); 
+    } else {
+        arrayCart[indexElement]['count'] = arrayCart[indexElement]['count'] + 1;
+    }
+  
+    console.log(arrayCart);  
+
+    //пересохраняем массив товаров Корзины в localStorage
+    save('cart', arrayCart);
+
+    //плюсуем в счётчик товаров в корзине
+    countProduct++;
+    //перерисовываем значение счётчика
+    containerCountProduct.innerHTML = countProduct;
+    //сохраняем новое значение в lS
+    save('countProduct', countProduct);
+
+/*-----------------------------------
+ВАРИАНТ 2
     //и наичнаем проверять нашу корзину
     //если в корзине вообще нет товаров, то просто пушим этот айдишник и кол-во товара = 1
     if (arrayCart.length == 0){
@@ -168,64 +199,47 @@ function addProductInCart(){
             //если не изменилась, значит, товара в корзине нет и можно его просто запушить 
             arrayCart.push({'id': productId, 'count': 1});
         }
+      
     }
+--------------------------------*/  
 
-    console.log(arrayCart);  
-
-    //пересохраняем массив товаров Корзины в localStorage
-    save('cart', arrayCart);
-
-    //плюсуем в счётчик товаров в корзине
-    countProduct++;
-    //перерисовываем значение счётчика
-    containerCountProduct.innerHTML = countProduct;
-    //сохраняем новое значение в lS
-    save('countProduct', countProduct);
 }
-
-/*
-//добавление товара в корзину (записываем в ls только id)
-function addProductInCart(){
-
-    //определяем на кнопку какого товара нажали (его id)
-    let productId = event.target.getAttribute('product-id');
-    //записываем этот айдишник в массив товаров Корзины
-    arrayCart.push(productId);
-    console.log(arrayTest[0]['id']);
-    arrayTest[0]['count'].push(1);
-    //пересохраняем массив товаров Корзины в localStorage
-    save('cart', arrayCart);
-    save('test', arrayTest);
-    console.log(arrayTest + "     " + localStorage.getItem('test'));
-    //плюсуем в счётчик товаров в корзине
-    countProduct++;
-    //перерисовываем значение счётчика
-    containerCountProduct.innerHTML = countProduct;
-    //сохраняем новое значение в lS
-    save('countProduct', countProduct);
-}
-*/
 
 //отрисовка Корзины
 function showCart(){
     clearPage();
 
-    let json = sendRequestGET('http://localhost:8090/api/get/?table=Goods');
+    // //получим только id корзины
+
+    let idArrayCart = getValueField(arrayCart, 'id');
+    let id = idArrayCart.join(',');
+
+
+    let json = sendRequestGET('http://localhost:8090/api/get/?table=Goods&id=' + id);
     let data=JSON.parse(json);
 
     let price = 0;
     let watchCards = '';
-    /*пробегаем по массиву товаров в корзине. Записываем в переменную cart все его элементы с новой строки.
-     А в переменную price считаем общую стоимость товаров*/
-     for(let i=0; i < arrayCart.length; i++){
-       // cart += (i+1) + ". " + data[arrayCart[i]-1]['product_name'] + "----------" + data[arrayCart[i]-1]['price'] + " руб.<br>";
-        price += data[i]['price'];
-//проверка        alert(arrayTest[i]['id'] + "-" + arrayTest[i]['count']);
-        watchCards += templateContainerWatchCard.replace('${photo}', data[i]['image'])
-                                            .replace('${title}', data[i]['product_name'])
-                                            .replace('${price}', data[i]['price']);
-    }
-    containerPage.innerHTML += templateCart.replace('${count}', arrayCart.length)
+
+for (let i = 0;  i < arrayCart.length; i++){
+    for (let j = 0; j < data.length; j++){
+        if (data[j]['id'] == arrayCart[i]['id']){
+            console.log('отрисовка ' + data[j]['id']);
+            price += data[j]['price'] * arrayCart[i]['count'];
+            
+            watchCards += templateContainerWatchCard.replace('${photo}', data[j]['image'])
+            .replace('${title}', data[j]['product_name'])
+            .replace('${count}', arrayCart[i]['count'])
+            .replace('${price}', data[j]['price'] * arrayCart[i]['count']);
+
+
+            break;
+        }
+    } 
+}
+    
+
+    containerPage.innerHTML += templateCart.replace('${count}', countProduct)
                                             .replace('${countSum}', price)
                                             .replace('${watchCards}', watchCards);
  }

@@ -23,9 +23,10 @@ header('Access-Control-Allow-Origin: *');
 
    // $sqlText = 'SELECT * FROM `Goods` JOIN `Brands` on Goods.brand = Brands.id;' ;
 
-   $filterStr = '';
+   $filterStr = ' id>0';
    if (isset($_GET['id']) && $_GET['id'] > 0) {
-       $filterStr = $filterStr . " AND id = " . $_GET['id'];
+
+       $filterStr = 'id  IN (' . $_GET['id'] . ')';
    }
    /*if (isset($_GET['username'])) {
        $username = $_GET['username'];
@@ -44,7 +45,7 @@ header('Access-Control-Allow-Origin: *');
 
 */
 
-   $sqlText = 'SELECT * FROM `' . $table . '` WHERE id > 0 ' . $filterStr . ';';
+   $sqlText = 'SELECT * FROM `' . $table . '` WHERE ' . $filterStr . ';';
 
     $result = $pdo->query($sqlText);
 
