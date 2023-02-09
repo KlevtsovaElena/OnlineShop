@@ -245,10 +245,12 @@
   
 <template id="tmpl-cart">
     <div class="windowCart">
-        <p>${count} позиций на сумму ${countSum}</p>
+        <div class="titleCart">
+            <h1 class="black">Корзина</h1>
+            <p>${count} позиций на сумму ${countSum} руб.</p>
+        </div>
         <div class="cart">
-            <h1>Корзина</h1>
-            <div>${watchCards}</div>
+            ${watchCards}
         </div>
     </div>
 </template>
@@ -256,9 +258,13 @@
     <div class="watchCard">
         <img src="${photo}" alt="" class="watch-cart-img">
         <div class="watch-name">${title}</div>
-        <div class="watch-count">${count}</div>
-        <div class="watch-price">${price}</div>
-        <div class="watch-delete">${delete}</div>
+        <div class="watch-count">
+            <div class="min"> - </div>
+                    ${count}
+            <div class="plus"> + </div>
+        </div>
+        <div class="watch-price">${price} руб.</div>
+        <div class="watch-delete"> ✕ </div>
     </div>
 </template>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
