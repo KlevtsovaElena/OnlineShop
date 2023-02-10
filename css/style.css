@@ -242,7 +242,6 @@ ul, li, h1 {
     justify-content: space-evenly;
     align-items: center;
     padding: 50px;
-    cursor: pointer;
     transition: all 0.6s;
 }
 
@@ -283,6 +282,7 @@ footer {
 .linkPic {
     width: 45px;
     border-radius: 50%;
+    cursor: pointer;
 }
 
 .sponsors {
@@ -368,10 +368,12 @@ footer {
     width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .watch-cart-img {
     width: 200px;
+    margin-bottom: 10px;
 }
 
 .share {
@@ -379,7 +381,23 @@ footer {
 }
 
 .watch-count {
+    display: flex;
     padding: 10px;
+    width: 125px;
+    border-radius: 10px;
+    border: 0.5px solid grey;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.min, .plus {
+    width: 30px;
+    text-align: center;
+    border: 0.5px solid grey;
+    border-radius: 50%;
+    /* padding: 3px; */
+    padding: 3px;
+    cursor: pointer;
 }
 
 .watch-name {
@@ -395,4 +413,58 @@ footer {
 
 .watch-price {
     font-size: 20px;
+}
+
+.cart {
+    width: 100%;
+    display: flex;
+}
+
+.watchCard {
+    margin-top: 25px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 0.5px solid grey;
+}
+
+.watch-cards-box {
+    width: 100%;
+}
+
+.black {
+    color: black;
+}
+
+.cart {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    border-top: 0.5px solid grey;
+}
+
+.titleCart {
+    margin-top: 20px;
+    width: 50%;
+    margin-bottom: 20px;
+}
+
+.watch-delete {
+    border-radius: 50%;
+    border: 1px solid black;
+    width: 35px;
+    text-align: center;
+    padding: 5px;
+    transition: all 0.2s;
+    cursor: pointer;
+
+}
+
+.watch-delete:hover {
+    border: 1px solid red;
+    color: red;
+    transition: all 0.2s;
 }
