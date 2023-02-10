@@ -3,7 +3,8 @@
 //и записываем в них значения localStorage
 let arrayCart = window.localStorage.getItem('cart');
 let arrayFavorite = window.localStorage.getItem('favorite');
-let countProduct = window.localStorage.getItem('countProduct');
+
+let countProduct;
 
 
 //если нет сохранённого, то создаём новые переменные. 
@@ -11,15 +12,16 @@ if (arrayCart == null || arrayCart == 'null' || arrayCart == ''){
     arrayCart = new Array();
 }else {arrayCart = JSON.parse(arrayCart);}
 
-if (countProduct == null){
+
+function countProductInCart(){
     countProduct = 0;
+    for (let i = 0;  i < arrayCart.length; i++){
+        countProduct += arrayCart[i]['count']; 
+    }
+    return countProduct;
 }
 
-
-//проверка
-console.log(arrayCart);
-console.log(countProduct);
-
+countProductInCart();
 
 //переменные для записи элементов HTML
 //основной контейнер, куда будут отрисовываться все страницы.
@@ -43,6 +45,9 @@ containerCountProduct.innerHTML = countProduct;
 
 //отрисуем при загрузке Главную страницу путём вызова функции
 renderMainPage();
+
+//проверка
+console.log(arrayCart);
 
 
 //функция очистки страницы
@@ -95,7 +100,8 @@ function renderCatalog(){
                                                     .replace('${id}', data[i]['id'])
                                                     .replace('${title}', data[i]['product_name'])
                                                     .replace('${photo}', data[i]['image'])
-                                                    .replace('${price}', data[i]['price']);
+                                                    .replace('${price}', data[i]['price'])
+                                                    .replace('${шт}', data[i]['product_count']);
         }
 }   
 
@@ -116,13 +122,14 @@ function renderCard(id){
 
     //меняем данные в шаблоне данными из апишки
     containerPage.innerHTML += templateCard.replace('${id}', data[0]['id'])
-
                                             .replace('${title}', data[0]['product_name'])
                                             .replace('${photo}', data[0]['image'])
                                             .replace('${price}', data[0]['price'])
                                             .replace('{rate}', 'рейтинг')
                                             .replace('{count}', 'число')
-                                            .replace('{description}', data[0]['product_description']);
+                                            .replace('${description}', data[0]['product_description'])
+                                            .replace('${шт}', data[0]['product_count'])
+                                            .replace('${шт}', data[0]['product_count']);
                                    
 }
 
@@ -137,11 +144,15 @@ function getValueField(arr, key){
     return valueFieldArray;
 
 }
+
 //добавление товара в корзину (записываем в ls только id)
 function addProductInCart(){
 
     //определяем на кнопку какого товара нажали (его id)
     let productId = event.target.getAttribute('product-id');
+    let inStock = event.target.getAttribute('product-count');
+
+
 
     //получим только id корзины
     let idArrayCart = getValueField(arrayCart, 'id');
@@ -152,7 +163,9 @@ function addProductInCart(){
     if (indexElement == -1){
         arrayCart.push({'id': productId, 'count': 1}); 
     } else {
-        arrayCart[indexElement]['count'] = arrayCart[indexElement]['count'] + 1;
+        if (inStock >= (arrayCart[indexElement]['count']+1)){
+            arrayCart[indexElement]['count'] = arrayCart[indexElement]['count'] + 1;
+        }else{ return};
     }
   
     console.log(arrayCart);  
@@ -164,8 +177,7 @@ function addProductInCart(){
     countProduct++;
     //перерисовываем значение счётчика
     containerCountProduct.innerHTML = countProduct;
-    //сохраняем новое значение в lS
-    save('countProduct', countProduct);
+
 
 /*-----------------------------------
 ВАРИАНТ 2
@@ -206,7 +218,7 @@ function addProductInCart(){
 }
 
 //отрисовка Корзины
-function showCart(){
+function renderCart(){
     clearPage();
 
     // //получим только id корзины
@@ -228,11 +240,15 @@ for (let i = 0;  i < arrayCart.length; i++){
             price += data[j]['price'] * arrayCart[i]['count'];
             
             watchCards += templateContainerWatchCard.replace('${photo}', data[j]['image'])
-            .replace('${title}', data[j]['product_name'])
-            .replace('${count}', arrayCart[i]['count'])
-            .replace('${price}', data[j]['price'] * arrayCart[i]['count']);
-
-
+                                                    .replace('${title}', data[j]['product_name'])
+                                                    .replace('${count}', arrayCart[i]['count'])
+                                                    .replace('${price}', data[j]['price'] * arrayCart[i]['count'])
+                                                    .replace('${id}', arrayCart[i]['id'])
+                                                    .replace('${id}', arrayCart[i]['id'])
+                                                    .replace('${id}', arrayCart[i]['id'])
+                                                    .replace('${id}', arrayCart[i]['id'])
+                                                    .replace('${шт}', arrayCart[i]['product_count']);
+            
             break;
         }
     } 
@@ -244,4 +260,18 @@ for (let i = 0;  i < arrayCart.length; i++){
                                             .replace('${watchCards}', watchCards);
  }
 
+//
+function deleteProductCart(id){
 
+    for (let i = 0;  i < arrayCart.length; i++){
+        if (arrayCart[i]['id'] == id) {
+            arrayCart.splice(i, 1);
+            break;
+        }
+    }
+    countProduct = countProductInCart();
+    containerCountProduct.innerHTML = countProduct;
+    //пересохраняем массив товаров Корзины в localStorage
+    save('cart', arrayCart);
+renderCart();
+}
