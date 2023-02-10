@@ -247,7 +247,8 @@ for (let i = 0;  i < arrayCart.length; i++){
                                                     .replace('${id}', arrayCart[i]['id'])
                                                     .replace('${id}', arrayCart[i]['id'])
                                                     .replace('${id}', arrayCart[i]['id'])
-                                                    .replace('${шт}', arrayCart[i]['product_count']);
+                                                    .replace('${шт}', data[j]['product_count'])
+                                                    .replace('${шт}', data[j]['product_count']);
             
             break;
         }
@@ -274,4 +275,41 @@ function deleteProductCart(id){
     //пересохраняем массив товаров Корзины в localStorage
     save('cart', arrayCart);
 renderCart();
+}
+
+function minusProduct(id){
+    for(let i = 0; i < arrayCart.length; i++){
+        if (arrayCart[i]['id'] == id) {
+            arrayCart[i]['count'] = arrayCart[i]['count']-1;
+            if (arrayCart[i]['count'] <= 0){
+                deleteProductCart(id);
+                return;
+            }
+            break;
+        }
+    }
+    countProduct = countProductInCart();
+    containerCountProduct.innerHTML = countProduct;
+    //пересохраняем массив товаров Корзины в localStorage
+    save('cart', arrayCart);
+    renderCart();
+    
+}
+
+function plusProduct(id){
+    let inStock = event.target.getAttribute('product-count');
+    console.log(inStock);
+    for(let i = 0; i < arrayCart.length; i++){
+        if (arrayCart[i]['id'] == id) {
+            if (inStock >= (arrayCart[i]['count']+1)){
+                arrayCart[i]['count'] = arrayCart[i]['count'] + 1;
+            }
+            break;
+        }
+    }
+    countProduct = countProductInCart();
+    containerCountProduct.innerHTML = countProduct;
+    //пересохраняем массив товаров Корзины в localStorage
+    save('cart', arrayCart);
+    renderCart();
 }

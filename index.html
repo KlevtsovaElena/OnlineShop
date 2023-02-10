@@ -289,9 +289,9 @@
         <img src="${photo}" alt="" class="watch-cart-img" onclick="renderCard(${id})">
         <div class="watch-name">${title}</div>
         <div class="watch-count">
-            <div class="min"> - </div>
+            <div class="min" onclick="minusProduct(${id})"> - </div>
                     ${count}
-            <div class="plus"> + </div>
+            <div class="plus" onclick="plusProduct(${id})" product-count="${шт}"> + </div>
         </div>
         <div class="watch-price">${price} руб.</div>
         <div class="watch-delete" onclick="deleteProductCart(${id})"> ✕ </div>
