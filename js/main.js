@@ -35,7 +35,7 @@ const templateCard = document.getElementById('tmpl-card').innerHTML;
 const templateMainContent = document.getElementById('mainContent').innerHTML;
 const templateCart = document.getElementById('tmpl-cart').innerHTML;
 const templateContainerWatchCard = document.getElementById('tmpl-containerWatchCard').innerHTML;
-
+const templateCartEmpty = document.getElementById('tmpl-cart-empty').innerHTML;
 
 //let templateDeliveryPay = document.getElementById('tmpl-deliveryPay').innerHTML;
 //let templateContacts = document.getElementById('tmpl-contacts').innerHTML;
@@ -221,6 +221,10 @@ function addProductInCart(){
 function renderCart(){
     clearPage();
 
+    if (arrayCart.length==0){
+        containerPage.innerHTML = templateCartEmpty;
+        return;
+    }
     // //получим только id корзины
 
     let idArrayCart = getValueField(arrayCart, 'id');
@@ -263,7 +267,10 @@ for (let i = 0;  i < arrayCart.length; i++){
 
 //
 function deleteProductCart(id){
-
+    let ok = confirm("Удалить из корзины этот товар?");  //true / false
+    if(ok==false){
+        return;
+    }            
     for (let i = 0;  i < arrayCart.length; i++){
         if (arrayCart[i]['id'] == id) {
             arrayCart.splice(i, 1);
@@ -278,13 +285,14 @@ renderCart();
 }
 
 function minusProduct(id){
+
+
     for(let i = 0; i < arrayCart.length; i++){
         if (arrayCart[i]['id'] == id) {
-            arrayCart[i]['count'] = arrayCart[i]['count']-1;
-            if (arrayCart[i]['count'] <= 0){
-                deleteProductCart(id);
+            if(arrayCart[i]['count']==1){
                 return;
             }
+            arrayCart[i]['count'] = arrayCart[i]['count']-1;
             break;
         }
     }
