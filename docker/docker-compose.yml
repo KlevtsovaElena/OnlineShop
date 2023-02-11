@@ -9,7 +9,7 @@ services:
     volumes:
       - ./../site/:/var/www
     ports: 
-      - 8090:80
+      - 80:80
 
   php:
     build: 

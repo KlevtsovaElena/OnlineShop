@@ -1,8 +1,8 @@
 
 //создаём переменные  для записи товаров в корзину И избранное, переменную для подсчёта товаров в корзине. Точнее id товаров
 //и записываем в них значения localStorage
-let arrayCart = window.localStorage.getItem('cart');
-let arrayFavorite = window.localStorage.getItem('favorite');
+let arrayCart = window.localStorage.getItem('onlineShop_cart');
+let arrayFavorite = window.localStorage.getItem('onlineShop_favorite');
 
 let countProduct;
 
@@ -86,7 +86,7 @@ function renderCatalog(){
     clearPage();
 
     //получаем данные каталога
-    let json = sendRequestGET('http://localhost:8090/api/get/?table=Goods');
+    let json = sendRequestGET('http://localhost/api/get/?table=goods');
     //раскодируем данные
     let data = JSON.parse(json);
 
@@ -112,7 +112,7 @@ function renderCard(id){
     clearPage();
 
     //получаем данные одного товара по id
-    let json = sendRequestGET('http://localhost:8090/api/get/?table=Goods&id=' + id);
+    let json = sendRequestGET('http://localhost/api/get/?table=goods&id=' + id);
     //раскодируем данные
     let data = JSON.parse(json);
 
@@ -171,7 +171,7 @@ function addProductInCart(){
     console.log(arrayCart);  
 
     //пересохраняем массив товаров Корзины в localStorage
-    save('cart', arrayCart);
+    save('onlineShop_cart', arrayCart);
 
     //плюсуем в счётчик товаров в корзине
     countProduct++;
@@ -231,7 +231,7 @@ function renderCart(){
     let id = idArrayCart.join(',');
 
 
-    let json = sendRequestGET('http://localhost:8090/api/get/?table=Goods&id=' + id);
+    let json = sendRequestGET('http://localhost/api/get/?table=goods&id=' + id);
     let data=JSON.parse(json);
 
     let price = 0;
@@ -280,7 +280,7 @@ function deleteProductCart(id){
     countProduct = countProductInCart();
     containerCountProduct.innerHTML = countProduct;
     //пересохраняем массив товаров Корзины в localStorage
-    save('cart', arrayCart);
+    save('onlineShop_cart', arrayCart);
 renderCart();
 }
 
@@ -299,7 +299,7 @@ function minusProduct(id){
     countProduct = countProductInCart();
     containerCountProduct.innerHTML = countProduct;
     //пересохраняем массив товаров Корзины в localStorage
-    save('cart', arrayCart);
+    save('onlineShop_cart', arrayCart);
     renderCart();
     
 }
@@ -318,6 +318,6 @@ function plusProduct(id){
     countProduct = countProductInCart();
     containerCountProduct.innerHTML = countProduct;
     //пересохраняем массив товаров Корзины в localStorage
-    save('cart', arrayCart);
+    save('onlineShop_cart', arrayCart);
     renderCart();
 }
