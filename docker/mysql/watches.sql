@@ -67,9 +67,7 @@ INSERT INTO `goods` (`id`, `product_name`, `product_description`, `price`, `prod
 (1,	'Watch1',	'Это описание для продажи лота часов №1, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, часы',	100,	5,	'img/watch_buy2.webp',	'2031-01-20 23:00:00',	1,	1,	1),
 (2,	'Watch2',	'Это описание для продажи лота часов №2, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, часы',	200,	10,	'img/watch_buy3.webp',	'2031-01-20 23:00:00',	2,	2,	3),
 (3,	'Watch3',	'это описание часов 3',	300,	2,	'img/watch_buy1.webp',	'2031-01-20 23:00:00',	2,	3,	5),
-(4,	'Watch4',	'ghkjdfghjsdhgasdhvkdfhbadvnhkdjfbvsikvn;d часы 4',	400,	1,	'img/watch_buy4.webp',	'2023-02-11 12:12:02',	3,	1,	2);
-(5,	'Watch5',	'ghkjdfghjsdhgasdhvkdfhbadvnhkdjfbvsikvn;d часы 5',	500,	3,	'img/funWatch_buy2.jpg',	'2023-02-11 12:12:02',	3,	1,	2);
-(6,	'Watch6',	'ghkjdfghjsdhgasdhvkdfhbadvnhkdjfbvsikvn;d часы 6',	600,	2,	'img/funWatch_buy3.webp',	'2023-02-11 12:12:02',	3,	1,	2);
+(4,	'Watch4',	'ghkjdfghjsdhgasdhvkdfhbadvnhkdjfbvsikvn;d часы 4',	400,	1,	'watch_buy4.webp',	'2023-02-11 12:12:02',	3,	1,	2);
 
 DROP TABLE IF EXISTS `order_item`;
 CREATE TABLE `order_item` (
