@@ -321,3 +321,31 @@ function plusProduct(id){
     save('onlineShop_cart', arrayCart);
     renderCart();
 }
+
+
+
+//-------------------------- LOGIN -----------------------------//
+
+const signInBtn = document.querySelector('.signin-btn');
+const signUpBtn = document.querySelector('.signup-btn');
+const formBox = document.querySelector('.form-box');
+const templateLogin = document.getElementById('tmpl-login').innerHTML;
+
+signUpBtn.addEventListener('click', function(){
+    formBox.classList.add('active');
+    mainBlock.classList.add('active');
+});
+
+signInBtn.addEventListener('click', function(){
+    formBox.classList.remove('active');
+    mainBlock.classList.remove('active');
+});
+
+//функция отрисовки логин окна
+function renderLogin() {
+    //очищаем страницу
+    clearPage();
+
+    //отрисовываем шаблон login
+    containerPage.innerHTML += templateLogin;
+}

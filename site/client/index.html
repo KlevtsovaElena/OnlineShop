@@ -16,20 +16,17 @@
     <header>
 
         <div class="menu flex-box-start">
-            <div class="logoMenu marg-right">PIC</div>
-            <div class="nav flex-box">
+            <img src="/site/client/img/menu_pic.webp" class="logoMenu marg-right">
+            <div class="nav flex-box-around">
                 <div class="cat marg-right" onclick="renderCatalog()">Catalog</div>
-                <div class="cat marg-right">New releases</div>
                 <div class="cat marg-right">Collections</div>
            <!--     <div class="cat marg-right">Watches by type</div>-->
-                <div class="cat marg-right">Straps</div>
                 <div class="cat marg-right">Accesories</div>
-                <div class="cat marg-right">Watch finder</div>
             </div>
             <div class="links flex-box-end">
                 <div class="bd-btm marg-right" onclick="renderMainPage()">Home</div>                
                 <div class="bd-btm marg-right">Search</div>
-                <div class="bd-btm login marg-right">Login</div>
+                <div class="bd-btm login marg-right" onclick="renderLogin()">Login</div>
                 <div class="cartImg" onclick="renderCart()">
                     <img src="img/cartImg.png" >
                     <button id="countProduct" ></button>
@@ -161,13 +158,6 @@
                                 <div class="price">99999sek</div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="thirdSlide">
-                    <div class="slideContent">
-                        <div class="title">INSPIRED BY CAR RACING</div>
-                        <div class="dscrb">THE REBEL-AR COLLECTION</div>
-                        <div class="btn-more">Discover more</div>
                     </div>
                 </div>
             <div class="funFavorites bg-white">
@@ -309,6 +299,63 @@
             <br>
         </div>
     </div>
+</template>
+
+<template id="tmpl-login">
+<div class="mainBlock">
+    <article class="container">
+        <!-- Внутренний блок -->
+        <div class="block">
+            <section class="block__item block-item">
+                <h2 class="block-item__title">У вас уже есть аккаунт ?</h2>
+                <button class="block-item__btn signin-btn">Войти</button>
+            </section>
+            <section class="block__item block-item">
+                <h2 class="block-item__title">У вас нет аккаунта ?</h2>
+                <button class="block-item__btn signup-btn">Зарегистрироваться</button>
+            </section>
+        </div>
+        <!-- блок формы -->
+        <div class="form-box">
+            <!-- Форма входа -->
+            <form action="#" class="form form_signin">
+                <h3 class="form__title">Вход</h3>
+                <p>
+                    <input type="text" class="form__input" placeholder="Логин">
+                </p>
+                <p>
+                    <input type="password" class="form__input" placeholder="Пароль">
+                </p>
+                <p>
+                    <button class="form__btn">Войти</button>
+                </p>
+                <p>
+                    <a href="" class="form__forgot">Восстановить пароль</a>
+                </p>
+            </form>
+            <!-- Форма регистрации -->
+            <form action="#" class="form form_signup">
+                <h3 class="form__title">Регистрация</h3>
+                <p>
+                    <input type="text" class="form__input" placeholder="Логин">
+                </p>
+                <p>
+                    <input type="email" class="form__input" placeholder="Email">
+                </p>
+                <p>
+                    <input type="password" class="form__input" placeholder="Пароль">
+                </p>
+                <p>
+                    <input type="password" class="form__input" placeholder="Подтвердите пароль">
+                </p>
+                <p>
+                    <button class="form__btn form__btn_signup">Зарегистрироваться</button>
+                </p>
+            </form>
+        </div>
+    </article>
+</div>
+    
 </template>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
