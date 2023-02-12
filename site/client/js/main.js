@@ -101,7 +101,7 @@ function renderCatalog(){
                                                     .replace('${title}', data[i]['product_name'])
                                                     .replace('${photo}', data[i]['image'])
                                                     .replace('${price}', data[i]['price'])
-                                                    .replace('${шт}', data[i]['product_count']);
+                                                    .replace('${шт}', data[i]['quantity']);
         }
 }   
 
@@ -128,8 +128,8 @@ function renderCard(id){
                                             .replace('{rate}', 'рейтинг')
                                             .replace('{count}', 'число')
                                             .replace('${description}', data[0]['product_description'])
-                                            .replace('${шт}', data[0]['product_count'])
-                                            .replace('${шт}', data[0]['product_count']);
+                                            .replace('${шт}', data[0]['quantity'])
+                                            .replace('${шт}', data[0]['quantity']);
                                    
 }
 
@@ -150,7 +150,7 @@ function addProductInCart(){
 
     //определяем на кнопку какого товара нажали (его id)
     let productId = event.target.getAttribute('product-id');
-    let inStock = event.target.getAttribute('product-count');
+    let inStock = event.target.getAttribute('quantity');
 
 
 
@@ -251,8 +251,8 @@ for (let i = 0;  i < arrayCart.length; i++){
                                                     .replace('${id}', arrayCart[i]['id'])
                                                     .replace('${id}', arrayCart[i]['id'])
                                                     .replace('${id}', arrayCart[i]['id'])
-                                                    .replace('${шт}', data[j]['product_count'])
-                                                    .replace('${шт}', data[j]['product_count']);
+                                                    .replace('${шт}', data[j]['quantity'])
+                                                    .replace('${шт}', data[j]['quantity']);
             
             break;
         }
@@ -305,7 +305,7 @@ function minusProduct(id){
 }
 
 function plusProduct(id){
-    let inStock = event.target.getAttribute('product-count');
+    let inStock = event.target.getAttribute('quantity');
     console.log(inStock);
     for(let i = 0; i < arrayCart.length; i++){
         if (arrayCart[i]['id'] == id) {

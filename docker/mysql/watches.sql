@@ -19,6 +19,17 @@ INSERT INTO `brands` (`id`, `brand_name`) VALUES
 (2,	'бренд2'),
 (3,	'бренд3');
 
+DROP TABLE IF EXISTS `cart`;
+CREATE TABLE `cart` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `id_user` int unsigned NOT NULL,
+  `id_product` int unsigned NOT NULL,
+  `quantity` int unsigned NOT NULL,
+  `date_cart` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+
 DROP TABLE IF EXISTS `color`;
 CREATE TABLE `color` (
   `id` tinyint NOT NULL AUTO_INCREMENT,
@@ -54,22 +65,38 @@ CREATE TABLE `goods` (
   `product_name` varchar(255) NOT NULL,
   `product_description` varchar(400) NOT NULL,
   `price` double unsigned NOT NULL,
-  `product_count` smallint NOT NULL,
+  `quantity` smallint unsigned NOT NULL,
+  `reserve` smallint unsigned NOT NULL,
+  `sold` smallint unsigned NOT NULL,
+  `rating` smallint unsigned NOT NULL,
   `image` varchar(255) NOT NULL,
   `date_goods` datetime NOT NULL,
-  `brand` tinyint unsigned NOT NULL,
-  `sex` tinyint unsigned NOT NULL,
-  `color` tinyint unsigned NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
+  `category` tinyint unsigned NOT NULL,
+  `filter_brand` tinyint unsigned NOT NULL,
+  `filter_gender` tinyint unsigned NOT NULL,
+  `filter_style` tinyint unsigned NOT NULL,
+  `filter_numbers` tinyint unsigned NOT NULL,
+  `filter_color_body` tinyint unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `price_DESC` (`price`),
+  KEY `price_ASC` (`price`),
+  KEY `date_goods` (`date_goods`),
+  KEY `category` (`category`),
+  KEY `filter_brand` (`filter_brand`),
+  KEY `filter_gender` (`filter_gender`),
+  KEY `filter_style` (`filter_style`),
+  KEY `filter_numbers` (`filter_numbers`),
+  KEY `filter_color_body` (`filter_color_body`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
 
-INSERT INTO `goods` (`id`, `product_name`, `product_description`, `price`, `product_count`, `image`, `date_goods`, `brand`, `sex`, `color`) VALUES
-(1,	'Watch1',	'Это описание для продажи лота часов №1, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, часы',	100,	5,	'img/watch_buy2.webp',	'2031-01-20 23:00:00',	1,	1,	1),
-(2,	'Watch2',	'Это описание для продажи лота часов №2, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, часы',	200,	10,	'img/watch_buy3.webp',	'2031-01-20 23:00:00',	2,	2,	3),
-(3,	'Watch3',	'это описание часов 3',	300,	2,	'img/watch_buy1.webp',	'2031-01-20 23:00:00',	2,	3,	5),
-(4,	'Watch4',	'ghkjdfghjsdhgasdhvkdfhbadvnhkdjfbvsikvn;d часы 4',	400,	1,	'img/watch_buy4.webp',	'2023-02-11 12:12:02',	3,	1,	2),
-(5,	'Watch5',	'ghkjdfghjsdhgasdhvkdfhbadvnhkdjfbvsikvn;d часы 5',	500,	3,	'img/funWatch_buy3.webp',	'2023-02-11 12:12:02',	2,	1,	3),
-(6,	'Watch6',	'ghkjdfghjsdhgasdhvkdfhbadvnhkdjfbvsikvn;d часы 6',	600,	3,	'img/funWatch_buy2.jpg',	'2023-02-11 15:11:27',	2,	1,	3);
+INSERT INTO `goods` (`id`, `product_name`, `product_description`, `price`, `quantity`, `reserve`, `sold`, `rating`, `image`, `date_goods`, `category`, `filter_brand`, `filter_gender`, `filter_style`, `filter_numbers`, `filter_color_body`) VALUES
+(1,	'Watch1',	'Это описание для продажи лота часов №1, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, часы',	100,	5,	0,	0,	0,	'img/watch_buy2.webp',	'2031-01-20 23:00:00',	1,	1,	0,	0,	0,	0),
+(2,	'Watch2',	'Это описание для продажи лота часов №2, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, часы',	200,	10,	0,	0,	0,	'img/watch_buy3.webp',	'2031-01-20 23:00:00',	2,	2,	0,	0,	0,	0),
+(3,	'Watch3',	'это описание часов 3',	300,	2,	0,	0,	0,	'img/watch_buy1.webp',	'2031-01-20 23:00:00',	2,	3,	0,	0,	0,	0),
+(4,	'Watch4',	'ghkjdfghjsdhgasdhvkdfhbadvnhkdjfbvsikvn;d часы 4',	400,	1,	0,	0,	0,	'img/watch_buy4.webp',	'2023-02-11 12:12:02',	3,	1,	0,	0,	0,	0),
+(5,	'Watch5',	'ghkjdfghjsdhgasdhvkdfhbadvnhkdjfbvsikvn;d часы 5',	500,	3,	0,	0,	0,	'img/funWatch_buy3.webp',	'2023-02-11 12:12:02',	2,	1,	0,	0,	0,	0),
+(6,	'Watch6',	'ghkjdfghjsdhgasdhvkdfhbadvnhkdjfbvsikvn;d часы 6',	600,	3,	0,	0,	0,	'img/funWatch_buy2.jpg',	'2023-02-11 15:11:27',	2,	1,	0,	0,	0,	0),
+(7,	'Watch7',	'ghkjdfghjsdhgasdhvkdfhbadvnhkdjfbvsikvn;d часы 7',	700,	2,	0,	0,	0,	'img/funWatch_buy2.jpg',	'2023-02-11 15:11:27',	2,	1,	0,	0,	0,	0);
 
 DROP TABLE IF EXISTS `order_item`;
 CREATE TABLE `order_item` (
@@ -106,16 +133,18 @@ INSERT INTO `stores` (`id`, `Store_name`, `Store_adress`) VALUES
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) NOT NULL,
-  `last_name` int DEFAULT NULL,
-  `phone` int NOT NULL,
-  `email` int NOT NULL,
-  `password` int DEFAULT NULL,
-  `date` date NOT NULL,
-  `adress` varchar(500) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  `id_user` int NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `user_mail` varchar(50) DEFAULT NULL,
+  `password` varchar(50) DEFAULT NULL,
+  `date_registr` datetime DEFAULT NULL,
+  `user_adress` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `user_phone` varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `user_tocken` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  PRIMARY KEY (`id_user`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 
+INSERT INTO `users` (`id_user`, `user_name`, `user_mail`, `password`, `date_registr`, `user_adress`, `user_phone`, `user_tocken`) VALUES
+(1,	'chemezoida',	'evchemez@mail.ru',	NULL,	'2023-02-12 13:51:11',	'',	'9060685310',	NULL);
 
--- 2023-02-11 15:14:37
+-- 2023-02-12 13:55:57

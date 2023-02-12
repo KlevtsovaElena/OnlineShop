@@ -232,7 +232,7 @@
             <img class="pic" src="${photo}" onclick="renderCard(${id})">
             <div class="btm-block">
                 <div class="price">От ${price} руб.</div>
-                <div class="btn-buy" onclick="addProductInCart()" product-id="${id}" product-count="${шт}">Add+</div>
+                <div class="btn-buy" onclick="addProductInCart()" product-id="${id}" quantity="${шт}">Add+</div>
                 <img src="img/like.png" alt="" class="like">
             </div>
         </div>
@@ -252,7 +252,7 @@
                     <div class="watch-name">${title}</div>
                     <div class="dscr">${description}</div>
                     <div class="watch-price">Цена: ${price} руб.</div>
-                    <div class="btn-buy"  onclick="addProductInCart()" product-id="${id}" product-count="${шт}">Add+</div>
+                    <div class="btn-buy"  onclick="addProductInCart()" product-id="${id}" quantity="${шт}">Add+</div>
                     <div class="info">
                         <div class="watch-rating">${rating}</div>
                         <div class="reviews">Отзывы</div>
@@ -280,7 +280,7 @@
         <div class="watch-count">
             <div class="min" onclick="minusProduct(${id})"> - </div>
                     ${count}
-            <div class="plus" onclick="plusProduct(${id})" product-count="${шт}"> + </div>
+            <div class="plus" onclick="plusProduct(${id})" quantity="${шт}"> + </div>
         </div>
         <div class="watch-price">${price} руб.</div>
         <div class="watch-delete" onclick="deleteProductCart(${id})"> ✕ </div>
