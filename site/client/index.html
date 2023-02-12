@@ -18,7 +18,7 @@
             <img src="img/menu_pic.webp" class="logoMenu marg-right">
             <div class="nav flex-box-around">
                 <div class="cat marg-right" onclick="renderCatalog()">Catalog</div>
-                <div class="cat marg-right">Collections</div>
+                <div class="cat marg-right" onclick="sendCartInBD()">Collections</div>
            <!--     <div class="cat marg-right">Watches by type</div>-->
                 <div class="cat marg-right">Accesories</div>
             </div>
@@ -333,24 +333,24 @@
                 </p>
             </form>
             <!-- Форма регистрации -->
-            <form action="#" class="form form_signup">
+            <div action="#" class="form form_signup">
                 <h3 class="form__title">Регистрация</h3>
                 <p>
-                    <input type="text" class="form__input" placeholder="Логин">
+                    <input type="text" class="form__input user-name" placeholder="Логин">
                 </p>
                 <p>
-                    <input type="email" class="form__input" placeholder="Email">
+                    <input type="email" class="form__input user-mail" placeholder="Email">
                 </p>
                 <p>
-                    <input type="password" class="form__input" placeholder="Пароль">
+                    <input type="password" class="form__input user-pass1" placeholder="Пароль">
                 </p>
                 <p>
-                    <input type="password" class="form__input" placeholder="Подтвердите пароль">
+                    <input type="password" class="form__input user-pass2" placeholder="Подтвердите пароль">
                 </p>
                 <p>
-                    <button class="form__btn form__btn_signup">Зарегистрироваться</button>
+                    <button class="form__btn form__btn_signup" onclick="userRegistration()">Зарегистрироваться</button>
                 </p>
-            </form>
+            </div>
         </div>
     </article>
 </div>

@@ -96,4 +96,27 @@ abstract class Unit implements \Interfaces\UnitActiveInterface
         } 
         return $goods;
     }
+
+    public static function createLine() : bool
+    {
+        $strFields = '';
+        $strValues = '';
+
+        foreach ($_POST as $key => $value) {
+                $strFields .= "`$key`,"; 
+                $strValues .= "'$value',";
+
+        }
+
+        $strFields = trim($strFields, ',');
+        $strValues = trim($strValues, ',');
+
+
+        $sqlText = "INSERT INTO ". static::TABLE ."($strFields) VALUES($strValues)";
+
+        $pdo = \Connection::getConnection();
+        echo $sqlText;
+        return $pdo->query($sqlText);
+       
+    }
 }

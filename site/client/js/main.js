@@ -72,7 +72,7 @@ function renderMainPage(){
 }
 
 
-//функция для отправки запросов
+//функция для отправки запросов GET
 function sendRequestGET(url){
     let requestObj = new XMLHttpRequest();
     requestObj.open('GET', url, false);
@@ -340,6 +340,7 @@ function renderLogin() {
     const signInBtn = document.querySelector('.signin-btn');
     const signUpBtn = document.querySelector('.signup-btn');
     const formBox = document.querySelector('.form-box');
+    const mainBlock = document.querySelector('.mainBlock');
 
     signUpBtn.addEventListener('click', function(){
         formBox.classList.add('active');
@@ -350,4 +351,34 @@ function renderLogin() {
         formBox.classList.remove('active');
         mainBlock.classList.remove('active');
     });
+}
+
+//функция регистрации
+function userRegistration(){
+    let userName = event.target.closest(".form_signup").querySelector('.user-name').value;
+    let userMail = event.target.closest(".form_signup").querySelector('.user-mail').value;
+    let user_pass1 = event.target.closest(".form_signup").querySelector('.user-pass1').vale;
+
+  let params = "user_name=" + userName + "&user_mail=" + userMail + "&password=" + user_pass1;
+  url = "http://localhost/api/post/users.php"
+  let requestObj = new XMLHttpRequest();
+  requestObj.open('POST', url, false);
+  requestObj.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+  requestObj.send(params);
+  alert("отправил");
+}
+
+//функция тестовая, запись в таблицу через js
+function sendCartInBD(){
+//функция для отправки запросов GET
+
+    url = "http://localhost/api/post/goods.php"
+    let requestObj = new XMLHttpRequest();
+    requestObj.open('POST', url, false);
+    requestObj.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    let param = "product_name=testjs2&price=600";
+    requestObj.send(param);
+
+
 }
