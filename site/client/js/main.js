@@ -326,20 +326,8 @@ function plusProduct(id){
 
 //-------------------------- LOGIN -----------------------------//
 
-const signInBtn = document.querySelector('.signin-btn');
-const signUpBtn = document.querySelector('.signup-btn');
-const formBox = document.querySelector('.form-box');
+
 const templateLogin = document.getElementById('tmpl-login').innerHTML;
-
-signUpBtn.addEventListener('click', function(){
-    formBox.classList.add('active');
-    mainBlock.classList.add('active');
-});
-
-signInBtn.addEventListener('click', function(){
-    formBox.classList.remove('active');
-    mainBlock.classList.remove('active');
-});
 
 //функция отрисовки логин окна
 function renderLogin() {
@@ -348,4 +336,18 @@ function renderLogin() {
 
     //отрисовываем шаблон login
     containerPage.innerHTML += templateLogin;
+    
+    const signInBtn = document.querySelector('.signin-btn');
+    const signUpBtn = document.querySelector('.signup-btn');
+    const formBox = document.querySelector('.form-box');
+
+    signUpBtn.addEventListener('click', function(){
+        formBox.classList.add('active');
+        mainBlock.classList.add('active');
+    });
+    
+    signInBtn.addEventListener('click', function(){
+        formBox.classList.remove('active');
+        mainBlock.classList.remove('active');
+    });
 }
