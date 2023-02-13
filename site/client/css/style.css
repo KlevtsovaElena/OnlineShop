@@ -392,7 +392,6 @@ footer {
     width: 100%;
     height: auto;
     display: flex;
-    flex-direction: column;
     align-items: center;
 }
 
@@ -472,9 +471,13 @@ footer {
 }
 
 .titleCart {
+    margin-left: 130px;
+    display: flex;
     margin-top: 20px;
-    width: 50%;
+    width: 100%;
     margin-bottom: 20px;
+    flex-direction: column;
+    align-items: start;
 }
 
 .watch-delete {
@@ -569,7 +572,7 @@ footer {
 }
 
 .mainBlock.active {
-    background-color: rgba(20, 20, 40);
+    background-color: grey;
 }
 
 
@@ -701,4 +704,52 @@ footer {
 
 .form__forgot {
     color: #333;
+}
+
+
+/* ------------------- Заказ (правая сторона) --------------------------- */
+
+.container-cart {
+    width: 100%;
+}
+
+.order-cart {
+    border: 0.5px solid black;
+    display: flex;
+    width: 30%;
+    height: 500px;
+    flex-direction: column;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+    border-radius: 15px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.title-order {
+    width: 100%;
+    text-align: center;
+    color: black;
+}
+
+.form-order-cart {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+}
+
+.orderBtn {
+    margin: 25px 0 0 0;
+    padding: 5px;
+    border-radius: 20px;
+    background: salmon;
+    color: white;
+    border: none;
+    box-shadow: 0px 0px 10px black;
+}
+
+.margin-form {
+    margin: 25px 0px 0px 0px;
 }

@@ -331,6 +331,7 @@ const templateLogin = document.getElementById('tmpl-login').innerHTML;
 
 //функция отрисовки логин окна
 function renderLogin() {
+
     //очищаем страницу
     clearPage();
 
