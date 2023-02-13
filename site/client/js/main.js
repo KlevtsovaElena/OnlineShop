@@ -331,6 +331,7 @@ const templateLogin = document.getElementById('tmpl-login').innerHTML;
 
 //функция отрисовки логин окна
 function renderLogin() {
+
     //очищаем страницу
     clearPage();
 
@@ -340,6 +341,7 @@ function renderLogin() {
     const signInBtn = document.querySelector('.signin-btn');
     const signUpBtn = document.querySelector('.signup-btn');
     const formBox = document.querySelector('.form-box');
+    const mainBlock = document.querySelector('.mainBlock');
 
     signUpBtn.addEventListener('click', function(){
         formBox.classList.add('active');

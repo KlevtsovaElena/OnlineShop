@@ -263,13 +263,27 @@
     </template>
   
 <template id="tmpl-cart">
-    <div class="windowCart">
+    <div class="container-cart">
         <div class="titleCart">
             <h1 class="black">Корзина</h1>
             <p>${count} позиций на сумму ${countSum} руб.</p>
         </div>
-        <div class="cart">
-            ${watchCards}
+        <div class="windowCart">
+            <div class="cart">
+                ${watchCards}
+            </div>
+            <div class="order-cart">
+                <h1 class="title-order">Детали заказа</h1>
+                <form class="form-order-cart" action="">
+                    <p class="margin-form">Имя</p>
+                    <input type="text" name="phone" placeholder="Введите имя..">
+                    <p class="margin-form">Телефон</p>
+                    <input type="tel" name="phone" placeholder="Введите номер..">
+                    <p class="margin-form">Адрес доставки</p>
+                    <input type="text" placeholder="Введите адрес..">
+                    <button class="orderBtn">Оформить заказ</button>
+                </form>
+            </div>
         </div>
     </div>
 </template>
