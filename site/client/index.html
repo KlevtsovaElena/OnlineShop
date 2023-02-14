@@ -13,21 +13,24 @@
 </head>
 <body>
     <header>
-
         <div class="menu flex-box-start">
             <img src="img/menu_pic.webp" class="logoMenu marg-right">
             <div class="nav flex-box-around">
+                <div class="bd-btm cat marg-right" onclick="renderMainPage()">Home</div>
                 <div class="cat marg-right" onclick="renderCatalog()">Catalog</div>
-                <div class="cat marg-right" onclick="sendCartInBD()">Collections</div>
            <!--     <div class="cat marg-right">Watches by type</div>-->
                 <div class="cat marg-right">Accesories</div>
             </div>
-            <div class="links flex-box-end">
-                <div class="bd-btm marg-right" onclick="renderMainPage()">Home</div>                
-                <div class="bd-btm marg-right">Search</div>
-                <div class="bd-btm login marg-right" onclick="renderLogin()">Login</div>
+            <div class="nav links flex-box-end">
+                <div class="cat marg-right" onclick="sendCartInBD()">Collections</div>
+                <div id="search" class="bd-btm marg-right">
+                    <input type="text" placeholder="Поиск..">
+                </div>
+                <div id="login" class="bd-btm marg-right" onclick="renderLogin()">
+                    <img src="img/svg_account.png" alt="">
+                </div>
                 <div class="cartImg" onclick="renderCart()">
-                    <img src="img/cartImg.png" >
+                    <img src="img/svg_cart.png" >
                     <button id="countProduct" ></button>
                 </div>
             </div>
@@ -105,6 +108,38 @@
 
     <template id="mainContent">
         <div id="startPage">
+            <div class="firstSlide">
+                <div class="previewInfo">
+                    <div class="previewScale">
+                        <img class="prevPic" src="img/preview1.png" alt="">
+                    </div>
+                        <div class="inPrevInfo">
+                            <h1>WE ARE WATCH FREAKS</h1>
+                            <p>Our company was born out of a love for Swiss watches. To us, quality is about integrity. It's about looking at every detail, scrutinizing, and creating something superior.</p>
+                        </div>
+                    </img>
+                </div>
+                <div class="previewInfo">
+                    <div class="previewScale">
+                        <img class="prevPic" src="img/preview2.png" alt="">
+                    </div>
+                        <div class="inPrevInfo">
+                            <h1>UNIQUE & BOLD DESIGNS</h1>
+                            <p>we've got high standards for quality, design, and service. We're driven by a desire to offer unique timeless watches that look different and can be enjoyed for years to come.</p>
+                        </div>
+                    </img>
+                </div>
+                <div class="previewInfo">
+                    <div class="previewScale">
+                        <img class="prevPic" src="img/preview3.png" alt="">
+                    </div>
+                        <div class="inPrevInfo">
+                            <h1>SWISS CRAFTSMANSHIP</h1>
+                            <p>Our watches are made by hand in Switzerland, alongside the most respected brands in the industry, where watchmaking goes back generations.</p>
+                        </div>
+                    </img>
+                </div>
+            </div>
             <div id="carouselExample" class="carousel slide">
                 <div class="carousel-inner">
                   <div class="carousel-item active">
