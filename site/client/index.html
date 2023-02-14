@@ -34,7 +34,7 @@
                     <button id="countProduct" ></button>
                 </div>
             </div>
-        </div>
+        </div> 
     </header>
 
     <main id="startContent">
@@ -264,11 +264,13 @@
     <template id="tmpl-catalog">
         <div id="watch-box" >
             <div class="name">${title}</div>
-            <img class="pic" src="${photo}" onclick="renderCard(${id})">
+            <div class="picScale">
+                <img class="pic" src="${photo}" onclick="renderCard(${id})">
+            </div>
             <div class="btm-block">
-                <div class="price">От ${price} руб.</div>
-                <div class="btn-buy" onclick="addProductInCart()" product-id="${id}" quantity="${шт}">Add+</div>
-                <img src="img/like.png" alt="" class="like">
+                <div class="price">${price} <span class="rub">&#x20bd</span></div>
+                <div class="btn-buy" onclick="addProductInCart()" product-id="${id}" quantity="${шт}">В корзину</div>
+                <img src="img/like123.png" alt="" class="like">
             </div>
         </div>
     </template>
@@ -287,7 +289,7 @@
                     <div class="watch-name">${title}</div>
                     <div class="dscr">${description}</div>
                     <div class="watch-price">Цена: ${price} руб.</div>
-                    <div class="btn-buy"  onclick="addProductInCart()" product-id="${id}" quantity="${шт}">Add+</div>
+                    <div class="btn-buy"  onclick="addProductInCart()" product-id="${id}" quantity="${шт}">В корзину</div>
                     <div class="info">
                         <div class="watch-rating">${rating}</div>
                         <div class="reviews">Отзывы</div>

@@ -118,6 +118,7 @@ body {
 
 .previewScale {
     overflow: hidden;
+    cursor: pointer;
 }
 
 .previewInfo {
@@ -242,57 +243,88 @@ body {
 
 #containerPage {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     background-color: white;
     flex-wrap: wrap;
 }
 
 #watch-box {
+    /* border: 0.5px solid grey; */
     flex-direction: column;
     width: 400px;
     display: flex;
     align-items: center;
     height: 500px;
     justify-content: center;
+    border-radius: 20px;
+    margin: 20px 0px 20px 20px;
+    /* box-shadow: 0px 0px 10px grey; */
+    box-sizing: border-box;
+    transition: 0.3s ease-in-out;
+}
+
+#watch-box:hover {
+    box-shadow: 0px 0px 10px grey;
+    transition: 0.3s ease-in-out;
+    border: 0.5px solid grey;
+}
+
+.picScale {
+    overflow: hidden;
 }
 
 .pic {
     width: 300px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.pic:hover {
+    transition: 0.5s;
+    transform: scale(1.1);
 }
 
 .price {
-    color: black;
+    color: #000000b0;
+    font-size: 18px;
+    font-weight: normal;
 }
 
 .btm-block {
     width: 100%;
     display: flex;
+    align-items: center;
     justify-content: space-evenly;
     padding: 15px;
     margin-top: 15px;
 }
 
+.rub {
+    font-size: 20px;
+}
+
 .btn-buy {
     color: black;
-    width: 65px;
-    border: 1px solid deeppink;
+    width: 100px;
+    border: 1px solid black;
+    transition: 0.5s;
     border-radius: 15px;
     cursor: pointer;
 }
 
+.btn-buy:hover {
+    background-color: black;
+    color: white;
+    transition: 0.5s;
+}
+
 .like {
-    width: 40px;
+    width: 25px;
     cursor: pointer;
     border-radius: 50%;
-    transition: all 0.6s;
+    transition: all 0.1s;
 }
-
-.like:hover {
-    background-color: red;
-    transition: all 0.6s;
-}
-
 
 .blackBottom {
     display: flex;
