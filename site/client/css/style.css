@@ -933,3 +933,7 @@ footer {
 .margin-form {
     margin: 25px 0px 0px 0px;
 }
+
+#sort-filter-container {
+    background-color: #fff;
+}

@@ -2,7 +2,7 @@
 //чтобы получить доступ из нашей странички
 header('Access-Control-Allow-Origin: *');
 
-require_once('../../classes/autoload.php');
+require_once('../../../classes/autoload.php');
 
 //создание объекта для подключения к БД
 $pdo = Connection::getConnection();
