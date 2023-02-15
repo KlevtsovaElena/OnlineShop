@@ -157,12 +157,18 @@ body {
     border: none;
 }
 
-#search input {
+#search > input {
     border-radius: 10px;
     border: none;
+    outline: none;
     width: 250px;
     padding: 5px 15px;
     font-size: 15px;
+}
+
+#search > input:focus::-webkit-input-placeholder {
+    opacity: 0;
+    transition: opacity 0.2s ease;
 }
 
 .thirdSlide {
