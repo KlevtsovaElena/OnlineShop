@@ -90,13 +90,13 @@ CREATE TABLE `goods` (
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
 
 INSERT INTO `goods` (`id`, `product_name`, `product_description`, `price`, `quantity`, `reserve`, `sold`, `rating`, `image`, `date_goods`, `category`, `filter_brand`, `filter_gender`, `filter_style`, `filter_numbers`, `filter_color_body`) VALUES
-(1,	'Watch1',	'Это описание для продажи лота часов №1, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, часы',	100,	5,	0,	0,	0,	'img/watch_buy2.webp',	'2031-01-20 23:00:00',	1,	1,	0,	0,	0,	0),
-(2,	'Watch2',	'Это описание для продажи лота часов №2, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, часы',	200,	10,	0,	0,	0,	'img/watch_buy3.webp',	'2031-01-20 23:00:00',	2,	2,	0,	0,	0,	0),
-(3,	'Watch3',	'это описание часов 3',	300,	2,	0,	0,	0,	'img/watch_buy1.webp',	'2031-01-20 23:00:00',	2,	3,	0,	0,	0,	0),
-(4,	'Watch4',	'ghkjdfghjsdhgasdhvkdfhbadvnhkdjfbvsikvn;d часы 4',	400,	1,	0,	0,	0,	'img/watch_buy4.webp',	'2023-02-11 12:12:02',	3,	1,	0,	0,	0,	0),
-(5,	'Watch5',	'ghkjdfghjsdhgasdhvkdfhbadvnhkdjfbvsikvn;d часы 5',	500,	3,	0,	0,	0,	'img/funWatch_buy3.webp',	'2023-02-11 12:12:02',	2,	1,	0,	0,	0,	0),
-(6,	'Watch6',	'ghkjdfghjsdhgasdhvkdfhbadvnhkdjfbvsikvn;d часы 6',	600,	3,	0,	0,	0,	'img/funWatch_buy2.jpg',	'2023-02-11 15:11:27',	2,	1,	0,	0,	0,	0),
-(7,	'Watch7',	'ghkjdfghjsdhgasdhvkdfhbadvnhkdjfbvsikvn;d часы 7',	700,	2,	0,	0,	0,	'img/funWatch_buy2.jpg',	'2023-02-11 15:11:27',	2,	1,	0,	0,	0,	0);
+(1,	'Watch1',	'Это описание для продажи лота часов №1, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, часы',	100,	5,	0,	15,	0,	'img/watch_buy2.webp',	'2023-01-20 23:00:00',	1,	1,	0,	0,	0,	0),
+(2,	'Watch2',	'Это описание для продажи лота часов №2, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, самые крутые, стильные, моднеы, часы',	200,	10,	0,	4,	0,	'img/watch_buy3.webp',	'2023-01-20 23:00:01',	2,	2,	0,	0,	0,	0),
+(3,	'Watch3',	'это описание часов 3',	300,	2,	0,	0,	0,	'img/watch_buy1.webp',	'2023-01-20 23:00:05',	2,	3,	0,	0,	0,	0),
+(4,	'Watch4',	'ghkjdfghjsdhgasdhvkdfhbadvnhkdjfbvsikvn;d часы 4',	400,	1,	0,	5,	0,	'img/watch_buy4.webp',	'2023-02-11 12:12:02',	3,	1,	0,	0,	0,	0),
+(5,	'Watch5',	'ghkjdfghjsdhgasdhvkdfhbadvnhkdjfbvsikvn;d часы 5',	500,	3,	0,	0,	0,	'img/funWatch_buy3.webp',	'2023-02-11 12:12:05',	2,	1,	0,	0,	0,	0),
+(6,	'Watch6',	'ghkjdfghjsdhgasdhvkdfhbadvnhkdjfbvsikvn;d часы 6',	600,	3,	0,	2,	0,	'img/funWatch_buy2.jpg',	'2023-02-11 15:11:27',	2,	1,	0,	0,	0,	0),
+(7,	'Watch7',	'ghkjdfghjsdhgasdhvkdfhbadvnhkdjfbvsikvn;d часы 7',	700,	2,	0,	14,	0,	'img/funWatch_buy1.webp',	'2023-02-11 15:11:27',	2,	1,	0,	0,	0,	0);
 
 DROP TABLE IF EXISTS `order_item`;
 CREATE TABLE `order_item` (
@@ -147,4 +147,4 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id_user`, `user_name`, `user_mail`, `password`, `date_registr`, `user_adress`, `user_phone`, `user_tocken`) VALUES
 (1,	'chemezoida',	'evchemez@mail.ru',	NULL,	'2023-02-12 13:51:11',	'',	'9060685310',	NULL);
 
--- 2023-02-12 13:55:57
+-- 2023-02-15 17:27:58
