@@ -38,7 +38,7 @@ abstract class Unit implements \Interfaces\UnitActiveInterface
             echo "метод $name статический";
     }
 
-     //метод для получения всех полей юзера из таблицы
+     //метод для получения всех полей из таблицы
      private function getLine() : array
      {
          //если есть кэш, то выдаем данные оттуда
@@ -74,6 +74,9 @@ abstract class Unit implements \Interfaces\UnitActiveInterface
     {
         
     }
+
+
+    //получение всех записей таблицы или только тех, что в списке 
     public static function getLines() : array
     {
         
@@ -82,21 +85,28 @@ abstract class Unit implements \Interfaces\UnitActiveInterface
         if (isset($_GET['id']) && $_GET['id'] > 0) {
             $filterStr = ' AND id  IN (' . $_GET['id'] . ')';
         }
-
+        if (isset($_GET['sort'])) {
+            $filterStr = ' ORDER BY '  . $_GET['field'] . ' '. $_GET['orderBy'];
+        }
+        if (isset($_GET['limit'])) {
+            $filterStr .=  ' LIMIT ' . $_GET['limit'];
+        }
 
         $sqlText = 'SELECT * FROM `' . static::TABLE . '` WHERE 1 ' . $filterStr . ';';
 
         $pdo = \Connection::getConnection();
         $result = $pdo->query($sqlText);
 
-        $goods = [];
+        $tableItem = [];
         while ($row = $result->fetch())
         {
-            $goods[] = $row;
+            $tableItem[] = $row;
         } 
-        return $goods;
+        return $tableItem;
     }
 
+
+    //сделать запись в любую таблицу
     public static function createLine() : bool
     {
         $strFields = '';
@@ -119,4 +129,5 @@ abstract class Unit implements \Interfaces\UnitActiveInterface
         return $pdo->query($sqlText);
        
     }
+   
 }
