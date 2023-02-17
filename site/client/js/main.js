@@ -15,6 +15,7 @@ if (arrayCart == null || arrayCart == 'null' || arrayCart == ''){
 
 //функция подсчёта товаров в корзине
 function countProductInCart(){
+    countProduct = 0;
     for (let i = 0;  i < arrayCart.length; i++){
         countProduct += arrayCart[i]['count']; 
     }
