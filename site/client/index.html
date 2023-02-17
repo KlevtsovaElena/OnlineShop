@@ -445,7 +445,8 @@
 </div>
     
 </template>
-<template id="tmpl-sort-filter">
+
+<template id="tmpl-sort">
     <div>
     <select name="sort" size="1">
         <option value="" >сортировка</option>
@@ -457,7 +458,23 @@
    
     </select>
     </div>
+</template>
+<template id="tmpl-filters">    
+    <div class="filter">
+        <ul id="${filter}" class="filter_item">${filter}
+            ${filter_item}
+        </ul>
+    </div>
+</template>
+<template id = "tmpl-priceInterval">   
+    <div class="priceToDo">
+        Цена от <input type="number" value = "0" id="priceTo"> до <input type="number" value = "0" id="priceDo">
+    </div>
+    <button onclick="buildParams()">ПРИМЕНИТЬ</button>
 </template>   
+<template id="tmpl-item">
+    <li><input type="checkbox" id="${id}"  value="${name}">${name}</li>
+</template>
 
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>

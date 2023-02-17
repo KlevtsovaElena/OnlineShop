@@ -41,13 +41,14 @@ const templateCart = document.getElementById('tmpl-cart').innerHTML;
 const templateContainerWatchCard = document.getElementById('tmpl-containerWatchCard').innerHTML;
 const templateCartEmpty = document.getElementById('tmpl-cart-empty').innerHTML;
 const templateWatchMain = document.getElementById('tmpl-watchMain').innerHTML;
-const templateSortFilter = document.getElementById('tmpl-sort-filter').innerHTML;
+const templateSort = document.getElementById('tmpl-sort').innerHTML;
 const templateLogin = document.getElementById('tmpl-login').innerHTML;
+const templatePriceInterval = document.getElementById('tmpl-priceInterval').innerHTML;
+const templateItem = document.getElementById('tmpl-item').innerHTML;
+const templateFilter = document.getElementById('tmpl-filters').innerHTML;
 
 //переменная-метка для того, чтобы очищать или не очищать панель сортировки
 let sort = -1;
-
-
 
 //впишем в красный круг корзины количество товаров из переменной countProduct
 containerCountProduct.innerHTML = countProduct;
@@ -94,7 +95,7 @@ function renderMainPage(){
     clearPage();
 
     //запрос на получение 4 последних добаленных товаров
-    let jsonNewRelease = sendRequestGET("http://localhost/api/get/goods/?sort&field=date_goods&orderBy=DESC&limit=4");
+    let jsonNewRelease = sendRequestGET("http://localhost/api/get/goods/?field=date_goods&orderBy=DESC&limit=4");
     //раскодируем данные
     let dataNewRelease = JSON.parse(jsonNewRelease);
     
@@ -109,7 +110,7 @@ function renderMainPage(){
     }
 
     //запрос на получение 4 товаров, которых купили больше всего раз
-    let jsonFanFavorites = sendRequestGET("http://localhost/api/get/goods/?sort&field=sold&orderBy=DESC&limit=4");
+    let jsonFanFavorites = sendRequestGET("http://localhost/api/get/goods/?field=sold&orderBy=DESC&limit=4");
     //раскодируем данные
     let dataFanFavorites = JSON.parse(jsonFanFavorites);
 
@@ -129,20 +130,124 @@ function renderMainPage(){
 }
 
 
+
+function renderSortFilterPannel(){
+
+    let json = sendRequestGET('http://localhost/api/get/filter/?');
+
+    console.log(json);
+    //раскодируем данные
+    let data = JSON.parse(json);
+
+    sortFilterContainer.innerHTML += templateSort;
+    let items = '';
+
+    for (let i = 0; i < data.length; i++) { 
+        for (let j = 0; j < data[i].length; j++) {
+            items += templateItem.replace('${id}', data[i][j]['id'])
+                                    .replace('${name}', data[i][j]['name'])
+                                    .replace('${name}', data[i][j]['name']);
+        }
+        sortFilterContainer.innerHTML += templateFilter.replace('${filter}', data[i][0]['name_table'].toLowerCase())
+                                                        .replace('${filter}', data[i][0]['name_table'])
+                                                    .replace('${filter_item}',  items);
+        items = '';    
+    }  
+    
+    sortFilterContainer.innerHTML += templatePriceInterval;
+
+    //СОРТИРОВКА
+    //получаем  Select со всеми элементами
+    let select = document.querySelector('select');
+    //по его изменению запускаем функцию
+    select.onchange = function(){
+        //получим индекс выбранного элемента 
+        let indexSelected = select.selectedIndex;
+        //получим сам элемент
+        let option = select.querySelectorAll('option')[indexSelected];
+        for(let i = 0; i < select.length; i++){
+            select.querySelectorAll('option')[i].removeAttribute('selected');
+        }
+        //
+        option.setAttribute('selected', 'selected');
+        option.selected = true;
+        //соберём необходимые данные для запроса и сортировки
+        let getParams = 'field=' + option.getAttribute('value') + '&orderBy=' + option.getAttribute('order');
+        //меняем нашу метку, чтобы не перерисовывать панель сортировки
+        sort = indexSelected;
+        //перерисовываем 
+        renderCatalog(getParams);
+    }
+
+}
+
+function buildParams(){
+
+    let paramFilter='';
+    let  ul = document.querySelectorAll('.filter_item');
+    for (let i = 0; i<ul.length; i++){
+        let li='';
+        let table = ul[i].getAttribute('id');
+        for(let j = 0; j < ul[i].childElementCount; j++) {
+            
+            let li2 = ul[i].querySelectorAll('li')[j].querySelector('input');
+            if(li2.checked == true){
+                li +=  li2.getAttribute('id') + ',';
+
+            }
+        }
+        if(li!==''){
+            li = li.substring(0, li.length-1);
+            if(paramFilter==''){
+               
+                paramFilter = table + '=' + li;
+            }
+             else{
+                paramFilter += '&' + table + '=' + li;
+             }   
+            
+        }  
+        
+
+    }
+
+    
+    let price1 = document.getElementById('priceTo').value;
+    let price2 = document.getElementById('priceDo').value; 
+
+    if(price2 !== '' && (price1 < price2)) {
+
+            paramFilter += '&price1=' + price1 + '&price2=' + price2;
+   }   
+
+    let select = document.querySelector('select');
+    let indexSelected = select.selectedIndex;
+    if(indexSelected !== 0){
+        let option = select.querySelectorAll('option')[indexSelected];
+        paramFilter += '&field=' + option.getAttribute('value') + '&orderBy=' + option.getAttribute('order');
+    }
+
+sort=1;
+    renderCatalog(paramFilter);
+}
+
+
+let tempCCCCCCCCCCC="";
 //функция отрисовки каталога
 function renderCatalog(getParams){
 
+console.log('http://localhost/api/get/goods/?' + getParams)
     //очищаем страницу
     clearPage();
 
     //если наша метка не изменилась, те сортировка не была запущена, то отрисовываем панель сортировки
     //если же не равна -1, то оставляем с теми параметрами, какие сейчас есть
     if (sort == -1){
-        sortFilterContainer.innerHTML = templateSortFilter;
+        renderSortFilterPannel();
     }
 
     //получаем данные каталога
-    json = sendRequestGET('http://localhost/api/get/goods/' + getParams);
+    json = sendRequestGET('http://localhost/api/get/goods/?' + getParams);
     //раскодируем данные
     let data = JSON.parse(json);
 
@@ -167,10 +272,14 @@ function renderCatalog(getParams){
         let indexSelected = select.selectedIndex;
         //получим сам элемент
         let option = select.querySelectorAll('option')[indexSelected];
+        for(let i = 0; i < select.length; i++){
+            select.querySelectorAll('option')[i].removeAttribute('selected');
+        }
         //
+        option.setAttribute('selected', 'selected');
         option.selected = true;
         //соберём необходимые данные для запроса и сортировки
-        let getParams = '?sort&field=' + option.getAttribute('value') + '&orderBy=' + option.getAttribute('order');
+        let getParams = 'field=' + option.getAttribute('value') + '&orderBy=' + option.getAttribute('order');
         //меняем нашу метку, чтобы не перерисовывать панель сортировки
         sort = indexSelected;
         //перерисовываем 
@@ -185,7 +294,8 @@ function renderCard(id){
     sort = -1;
     //очищаем страницу
     clearPage();
-    
+    //сбрасываем скролл в ноль
+    window.scrollTo(0,0);
     //получаем данные одного товара по id
     let json = sendRequestGET('http://localhost/api/get/goods/?id=' + id);
     //раскодируем данные
@@ -441,6 +551,13 @@ function userRegistration(){
   requestObj.send(params);
   alert("отправил");
 }
+
+// let bcrypt = require('bcryptjs');
+// bcrypt.genSalt(10, function(error, salt){
+//     bcrypt.hash("test123", salt, function(error, hash){
+
+//     })
+// });
 
 //функция тестовая, запись в таблицу через js
 function sendCartInBD(){

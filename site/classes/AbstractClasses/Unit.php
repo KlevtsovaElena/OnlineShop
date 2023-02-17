@@ -82,13 +82,33 @@ abstract class Unit implements \Interfaces\UnitActiveInterface
         
         $filterStr = '';
 
-        if (isset($_GET['id']) && $_GET['id'] > 0) {
-            $filterStr = ' AND id  IN (' . $_GET['id'] . ')';
+        $strFields = '';
+        $strValues = '';
+
+        foreach ($_GET as $key => $value) {
+            if ($key !== 'orderBy' && $key !== 'limit' && $key !== 'field' && $key !== 'price1' && $key !== 'price2') {
+                $filterStr .= ' AND ' . $key . ' IN (' . $value . ')';  
+            }
         }
-        if (isset($_GET['sort'])) {
-            $filterStr = ' ORDER BY '  . $_GET['field'] . ' '. $_GET['orderBy'];
+        // if (isset($_GET['id']) && $_GET['id'] !== '') {
+        //     $filterStr .= ' AND id  IN (' . $_GET['id'] . ')';
+        // }
+        // if (isset($_GET['brand']) && $_GET['brand'] !== '') {
+        //     $filterStr .= ' AND brands  IN (' . $_GET['brands'] . ')';
+        // }
+        // if (isset($_GET['gender']) && $_GET['gender'] !== '') {
+        //     $filterStr .= ' AND gender  IN (' . $_GET['gender'] . ')';
+        // }
+        // if (isset($_GET['color']) && $_GET['color'] !== '') {
+        //     $filterStr .= ' AND color  IN (' . $_GET['color'] . ')';
+        // }
+        if ((isset($_GET['price1']) && $_GET['price1'] !== '') && (isset($_GET['price2']) && $_GET['price2'] !== '')) {
+            $filterStr .= ' AND price BETWEEN ' . $_GET['price1']  . ' AND ' .  $_GET['price2'];
         }
-        if (isset($_GET['limit'])) {
+        if (isset($_GET['orderBy']) && $_GET['orderBy'] !== '') {
+            $filterStr .= ' ORDER BY '  . $_GET['field'] . ' '. $_GET['orderBy'];
+        }
+        if (isset($_GET['limit']) && $_GET['limit'] !== '') {
             $filterStr .=  ' LIMIT ' . $_GET['limit'];
         }
 
@@ -96,12 +116,13 @@ abstract class Unit implements \Interfaces\UnitActiveInterface
 
         $pdo = \Connection::getConnection();
         $result = $pdo->query($sqlText);
-
+         
         $tableItem = [];
         while ($row = $result->fetch())
         {
             $tableItem[] = $row;
         } 
+
         return $tableItem;
     }
 

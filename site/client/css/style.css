@@ -937,3 +937,9 @@ footer {
 #sort-filter-container {
     background-color: #fff;
 }
+.filter {
+    display: inline-block;
+}
+.priceToDo>input {
+    width: 100px;
+}
