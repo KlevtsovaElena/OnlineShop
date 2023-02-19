@@ -576,8 +576,8 @@ function userAuthorization(){
     let password = inputs[1].value;
 
     //подставить в запрос и отправить
-    let params = "user_name=" + login + "&password=" + password + "&token=in/cLAu/gYQIE";
-    url = "http://localhost/auth/logout/";
+    let params = "user_name=" + login + "&password=" + password;
+    url = "http://localhost/auth/login/";
     let requestObj = new XMLHttpRequest();
     requestObj.open('POST', url, false);
     requestObj.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
