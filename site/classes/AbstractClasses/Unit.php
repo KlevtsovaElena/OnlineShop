@@ -90,18 +90,6 @@ abstract class Unit implements \Interfaces\UnitActiveInterface
                 $filterStr .= ' AND ' . $key . ' IN (' . $value . ')';  
             }
         }
-        // if (isset($_GET['id']) && $_GET['id'] !== '') {
-        //     $filterStr .= ' AND id  IN (' . $_GET['id'] . ')';
-        // }
-        // if (isset($_GET['brand']) && $_GET['brand'] !== '') {
-        //     $filterStr .= ' AND brands  IN (' . $_GET['brands'] . ')';
-        // }
-        // if (isset($_GET['gender']) && $_GET['gender'] !== '') {
-        //     $filterStr .= ' AND gender  IN (' . $_GET['gender'] . ')';
-        // }
-        // if (isset($_GET['color']) && $_GET['color'] !== '') {
-        //     $filterStr .= ' AND color  IN (' . $_GET['color'] . ')';
-        // }
         if ((isset($_GET['price1']) && $_GET['price1'] !== '') && (isset($_GET['price2']) && $_GET['price2'] !== '')) {
             $filterStr .= ' AND price BETWEEN ' . $_GET['price1']  . ' AND ' .  $_GET['price2'];
         }
@@ -146,8 +134,10 @@ abstract class Unit implements \Interfaces\UnitActiveInterface
         $sqlText = "INSERT INTO ". static::TABLE ."($strFields) VALUES($strValues)";
 
         $pdo = \Connection::getConnection();
-        echo $sqlText;
-        return $pdo->query($sqlText);
+
+        $pdo->query($sqlText);
+
+        return true;
        
     }
    

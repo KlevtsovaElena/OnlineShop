@@ -264,28 +264,28 @@ console.log('http://localhost/api/get/goods/?' + getParams)
                                                 .replace('${шт}', data[i]['quantity']);
     }
 
-    //СОРТИРОВКА
-    //получаем  Select со всеми элементами
-    let select = document.querySelector('select');
-    //по его изменению запускаем функцию
-    select.onchange = function(){
-        //получим индекс выбранного элемента 
-        let indexSelected = select.selectedIndex;
-        //получим сам элемент
-        let option = select.querySelectorAll('option')[indexSelected];
-        for(let i = 0; i < select.length; i++){
-            select.querySelectorAll('option')[i].removeAttribute('selected');
-        }
-        //
-        option.setAttribute('selected', 'selected');
-        option.selected = true;
-        //соберём необходимые данные для запроса и сортировки
-        let getParams = 'field=' + option.getAttribute('value') + '&orderBy=' + option.getAttribute('order');
-        //меняем нашу метку, чтобы не перерисовывать панель сортировки
-        sort = indexSelected;
-        //перерисовываем 
-        renderCatalog(getParams);
-    }
+    // //СОРТИРОВКА
+    // //получаем  Select со всеми элементами
+    // let select = document.querySelector('select');
+    // //по его изменению запускаем функцию
+    // select.onchange = function(){
+    //     //получим индекс выбранного элемента 
+    //     let indexSelected = select.selectedIndex;
+    //     //получим сам элемент
+    //     let option = select.querySelectorAll('option')[indexSelected];
+    //     for(let i = 0; i < select.length; i++){
+    //         select.querySelectorAll('option')[i].removeAttribute('selected');
+    //     }
+    //     //
+    //     option.setAttribute('selected', 'selected');
+    //     option.selected = true;
+    //     //соберём необходимые данные для запроса и сортировки
+    //     let getParams = 'field=' + option.getAttribute('value') + '&orderBy=' + option.getAttribute('order');
+    //     //меняем нашу метку, чтобы не перерисовывать панель сортировки
+    //     sort = indexSelected;
+    //     //перерисовываем 
+    //     renderCatalog(getParams);
+    // }
 }
 
 
@@ -534,6 +534,13 @@ function renderLogin() {
         formBox.classList.remove('active');
         mainBlock.classList.remove('active');
     });
+    document.querySelector('.form_signin').querySelector('button').addEventListener('click', function() {userAuthorization()});
+
+    //document.querySelector('.form_signin').querySelector('button').onclick =  function() {
+    //    userAuthorization();
+    //});
+
+
 }
 
 
@@ -541,24 +548,62 @@ function renderLogin() {
 function userRegistration(){
     let userName = event.target.closest(".form_signup").querySelector('.user-name').value;
     let userMail = event.target.closest(".form_signup").querySelector('.user-mail').value;
-    let user_pass1 = event.target.closest(".form_signup").querySelector('.user-pass1').vale;
+    let user_pass1 = event.target.closest(".form_signup").querySelector('.user-pass1').value;
+    let user_pass2 = event.target.closest(".form_signup").querySelector('.user-pass2').value;
 
-  let params = "user_name=" + userName + "&user_mail=" + userMail + "&password=" + user_pass1;
-  url = "http://localhost/api/post/users/"
-  let requestObj = new XMLHttpRequest();
-  requestObj.open('POST', url, false);
-  requestObj.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+if(user_pass1 !== user_pass2){
+    alert('пароли не совпадают');
+    return;
+}
+    let params = "user_name=" + userName + "&user_mail=" + userMail + "&password=" + user_pass1;
+    url = "http://localhost/api/post/users/"
+    let requestObj = new XMLHttpRequest();
+    requestObj.open('POST', url, false);
+    requestObj.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-  requestObj.send(params);
-  alert("отправил");
+    requestObj.send(params);
+    alert("отправил");
 }
 
-// let bcrypt = require('bcryptjs');
-// bcrypt.genSalt(10, function(error, salt){
-//     bcrypt.hash("test123", salt, function(error, hash){
+function userAuthorization(){
+    alert('вхожу');
+    event.preventDefault(); //предотвратить дефолтные действия, отмена отправки формы
 
-//     })
-// });
+    //найти все инпуты и получить данные из каждого
+    let inputs = event.target.closest('form').querySelectorAll('input');
+    console.log(inputs);
+
+    let login = inputs[0].value;
+    let password = inputs[1].value;
+
+    //подставить в запрос и отправить
+    let params = "user_name=" + login + "&password=" + password;
+    url = "http://localhost/api/post/users/";
+    let requestObj = new XMLHttpRequest();
+    requestObj.open('POST', url, false);
+    requestObj.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    requestObj.send(params);
+
+
+    
+
+
+}
+
+//функция тестовая, запись в таблицу через js
+function sendCartInBD(){
+//функция для отправки запросов GET
+
+    url = "http://localhost/api/post/goods/"
+    let requestObj = new XMLHttpRequest();
+    requestObj.open('POST', url, false);
+    requestObj.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    let param = "product_name=testjs2&price=600";
+    requestObj.send(param);
+alert("отправил");
+
+}
 
 //функция тестовая, запись в таблицу через js
 function sendCartInBD(){

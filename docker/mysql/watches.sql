@@ -122,9 +122,11 @@ INSERT INTO `goods` (`id`, `product_name`, `product_description`, `price`, `quan
 
 DROP TABLE IF EXISTS `order_item`;
 CREATE TABLE `order_item` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `order_id` int NOT NULL,
   `product_id` int NOT NULL,
-  `count` tinyint NOT NULL
+  `count` tinyint NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 
@@ -155,7 +157,7 @@ INSERT INTO `stores` (`id`, `Store_name`, `Store_adress`) VALUES
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
-  `id_user` int NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `user_name` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `user_mail` varchar(50) DEFAULT NULL,
   `password` varchar(50) DEFAULT NULL,
@@ -163,12 +165,14 @@ CREATE TABLE `users` (
   `user_adress` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `user_phone` varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `user_tocken` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 
-INSERT INTO `users` (`id_user`, `user_name`, `user_mail`, `password`, `date_registr`, `user_adress`, `user_phone`, `user_tocken`) VALUES
+INSERT INTO `users` (`id`, `user_name`, `user_mail`, `password`, `date_registr`, `user_adress`, `user_phone`, `user_tocken`) VALUES
 (1,	'chemezoida',	'evchemez@mail.ru',	NULL,	'2023-02-12 13:51:11',	'',	'9060685310',	NULL),
-(2,	'chemezoida',	'evchemez@mail.ru',	'undefined',	NULL,	NULL,	NULL,	NULL);
+(2,	'chemezoida',	'evchemez@mail.ru',	'undefined',	NULL,	NULL,	NULL,	NULL),
+(3,	'12345',	'125@mail.ru',	'injY8GPhDQhbc',	NULL,	NULL,	NULL,	NULL),
+(4,	'ghfjhgjdf',	'test@mail.ru',	'in.wszNcJxmb2',	NULL,	NULL,	NULL,	NULL);
 
 DROP TABLE IF EXISTS `сategory`;
 CREATE TABLE `сategory` (
@@ -183,4 +187,4 @@ INSERT INTO `сategory` (`id`, `name_category`) VALUES
 (3,	'Часы для спорта'),
 (4,	'Аксессуары');
 
--- 2023-02-17 20:45:16
+-- 2023-02-19 07:17:58

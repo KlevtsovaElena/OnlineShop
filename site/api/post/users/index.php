@@ -7,6 +7,14 @@ require_once('../../../classes/autoload.php');
 //создание объекта для подключения к БД
 $pdo = Connection::getConnection();
 
+if (isset($_POST['password'])) {
+    $_POST['password'] = crypt($_POST['password'], 'inordic');
+}
 
-//получаем апишку - все товары, чисто таблицу goods или инфу по 1 товару из этой таблицы
+if (User::exists()){
+    echo "Юзер уже есть";
+    exit(0);
+}
+
+//создаём запись в БД
 User::createLine();
